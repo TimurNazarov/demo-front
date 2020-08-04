@@ -1,0 +1,128 @@
+header {
+	border-bottom: 1px solid lighten($black, 60%);
+	padding: 0 15px;
+	height: $header_height;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	.header-navigation {
+		ul {
+			display: flex;
+			align-items: center;
+			li {
+				height: $header_height;
+				cursor: pointer;
+				&:first-child a {
+					padding-left: 0;
+				}
+				a {
+					padding: 0 10px;
+					display: block;
+					color: $black;
+					line-height: $header_height;
+				}
+				&:hover {
+					a {
+						color: $orange;
+					}
+				}
+			}
+		}
+	}
+	.header-profile {
+		display: flex;
+		align-items: center;
+		.notifications {
+			position: relative;
+			.notification-bell {
+				font-size: 22px;
+				cursor: pointer;
+				margin: 0 20px;
+				position: relative;
+				.red-circle {
+					position: absolute;
+					font-size: 8px;
+					top: 0px;
+					right: -4px;
+				}
+			}
+			.notifications-feed {
+				position: absolute;
+				top: 100%;
+				right: 25%;
+				border: 1px solid $black;
+				z-index: 99;
+				background-color: $blank;
+				max-height: 500px;
+				overflow: auto;
+				.notification-element {
+					width: 200px;
+					height: 60px;
+					padding: 7px 25px 7px 25px;
+					border-bottom: 1px solid $black;
+					position: relative;
+					&:last-child {
+						border-bottom: none;
+					}
+					&:hover {
+						background-color: lighten($orange, 33%);
+					}
+					.red-circle {
+						font-size: 8px;
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						left: 8.5px;
+					}
+					.notification {
+						height: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+.user-list {
+	@include grid(5);
+	justify-content: flex-start;
+}
+
+.user-card {
+	height: 125px;
+	display: flex;
+	// align-items: center;
+	padding: 12.5px;
+	box-sizing: border-box;
+	.profile-picture {
+		max-height: 100px;
+		max-width: 100px;
+		margin-right: 10px;
+	}
+	.user-info {
+		padding-top: 5px;
+		width: 100%;
+		.btn-content {
+			text-align: left;
+		}
+		.user-name {
+			margin-bottom: 12px;
+		}
+		.user-send-message, .remove-friend {
+			line-height: 30px;
+		}
+		.friend-request {
+			display: flex;
+			.btn {
+				line-height: 40px;
+				width: 50%;
+			}
+		}
+		.add-user, .request-cancel {
+			line-height: 40px;
+		}
+		.outgoing-friend-request {
+			margin-bottom: 10px;
+		}
+	}
+}

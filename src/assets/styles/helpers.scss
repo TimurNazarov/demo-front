@@ -1,0 +1,73 @@
+// vue animation classes
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.vue-list-move {
+	transition: transform .5s;
+}
+.vue-list-item {
+	transition: all .5s;
+}
+.vue-list-leave-active {
+  position: absolute;
+}
+.vue-list-enter, .vue-list-leave-to {
+  opacity: 0;
+  transform: translateY(-75%);
+}
+
+.openup-enter-active {
+  animation: openup .3s;
+}
+.openup-leave-active {
+  animation: openup .3s reverse;
+}
+
+// helper classes
+.unselectable {
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.red-circle {
+	color: $red;
+}
+
+.btn {
+	line-height: 50px;
+	.btn-content {
+		text-align: center;
+	}
+}
+
+.btn-default {
+	@include btn($blank);
+}
+.btn-orange {
+	@include btn($popcorn);
+}
+
+.btn-green {
+	@include btn($green);
+}
+.btn-red {
+	@include btn($red);
+}
+
+.tabs {
+	display: flex;
+	// justify-content: space-between;
+	li {
+		line-height: 50px;
+		padding: 0 15px;
+		cursor: pointer;
+		@include btn($blank, $light_bg: true, $padding: false, $hover_text_color: $orange);
+	}
+}

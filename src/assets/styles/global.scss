@@ -1,0 +1,58 @@
+// global styles
+body {
+	font-family: Open Sans;
+	font-weight: 400;
+	color: $black;
+	height: 100%;
+}
+i {
+	font-family: Font Awesome;
+}
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+a, a:hover {
+	text-decoration: none;
+}
+html {
+	overflow: hidden;
+	height: 100%;
+}
+#app, #dashboard, #main-screen {
+	height: 100%;
+}
+
+input {
+	border: 1px grey solid;
+}
+
+.message-popup {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	background-color: $blank;
+	border: 1px solid $black;
+	line-height: 50px;
+	width: 600px;
+	margin-left: -300px;
+	margin-top: -25px;
+	max-width: 100%;
+	text-align: center;
+	z-index: 99;
+}
+
+.select-language-component {
+	position: absolute;
+	right: 0;
+	top: 0;
+	.lang-list {
+		display: flex;
+		li {
+			height: 16px;
+			border: .1px solid lighten($black, 50%);
+			cursor: pointer;
+		}
+	}
+}
+// global end
