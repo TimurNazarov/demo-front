@@ -3,6 +3,7 @@
     <transition name="openup">
       <div class="message-popup" v-if="message_popup.show">{{ message_popup.message }}</div>
     </transition>
+    <chat-module/>
   	<header-component/>
     <router-view/>
   </div>
@@ -13,6 +14,8 @@
 // --
 // components
 import Header from './components/header/Header'
+// modules
+import ChatModule from './components/modules/chat/Chat'
 // mixins
 import Helpers from './mixins/Helpers'
 
@@ -23,7 +26,7 @@ export default {
       // -- load user
       this.$store.state.user_info_initialized = this.axios.get(this.$store.getters.api_url+"/user/get")
       .then(res => this.set_user(res.data.data))
-      .catch(er => console.log(er.response))
+      // .catch(er => console.log(er.response))
     }
   },
   computed: {
@@ -32,7 +35,8 @@ export default {
     }
   },
   components: {
-    'header-component': Header
+    'header-component': Header,
+    'chat-module': ChatModule
   },
 	mixins: [Helpers]
 }

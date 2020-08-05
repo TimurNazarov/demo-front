@@ -23,12 +23,19 @@ const state = {
 		loaded: [],
 		new: []
 	},
-	message_popup: {
-		show: false,
-		message: 'Hello'
+	messaging: {
+		contacts: {
+			loaded: [],
+			new: []
+		},
+		messages: {}
 	},
 	modals: {
 		notifications: false
+	},
+	message_popup: {
+		show: false,
+		message: 'Hello'
 	},
 }
 

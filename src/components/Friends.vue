@@ -8,7 +8,7 @@
     <router-view></router-view>
     <div class="friendable-list" v-if="friendable && $route.path == '/friends'">
       <p>Friendable users</p> <!-- translate -->
-      <user-list :users="friendable" @added="friendable_added"/>
+      <user-list :users="friendable"/>
     </div>
   </div>
 </template>
@@ -18,6 +18,8 @@
 import FriendList from './friends/FriendList'
 import FriendRequests from './friends/FriendRequests'
 import UserList from './layouts/UserList'
+// mixins
+import Helpers from '../mixins/Helpers'
 
 export default {
   name: 'Friends',
@@ -26,21 +28,16 @@ export default {
       this.active_tab = 'friend-requests'
     }
     // get all non-friend users
-    this.axios.get(this.$store.getters.api_url + '/friendable', this.form)
+    let new_ids = this.pluck(this.friendable, 'id')
+    let body = {
+      new: new_ids
+    }
+    this.axios.post(this.$store.getters.api_url + '/friendable', body)
       .then(res => {
         this.$store.dispatch('set_friendable_users', res.data.data)
       })
   },
   methods: {
-    friendable_added(user, request_id) {
-      let request = {
-        id: request_id,
-        to: user
-      }
-      this.$store.dispatch('add_friend_request', request)
-      let index = this.friendable.findIndex(f => f.id == user.id)
-      this.friendable.splice(index, 1)
-    },
     switch_tab(route) {
       if(route != this.$route.path) 
         this.$router.push(route)
@@ -71,10 +68,7 @@ export default {
     'friend-list': FriendList,
     'friend-requests': FriendRequests,
     'user-list': UserList
-  }
+  },
+  mixins: [Helpers]
 }
 </script>
-
-<style lang="scss">
-  @import '@/assets/styles/components/friends.scss';
-</style>

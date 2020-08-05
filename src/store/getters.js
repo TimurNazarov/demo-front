@@ -14,6 +14,10 @@ export default {
   pusher_initizlized(state) {
     return state.pusher_initizlized
   },
+  // messaging
+  contacts(state) {
+    return state.messaging.contacts
+  },
   // etc
   message_popup(state) {
     return state.message_popup

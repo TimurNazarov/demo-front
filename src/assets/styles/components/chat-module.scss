@@ -1,0 +1,19 @@
+@import "../variables.scss";
+
+.chat-module {
+	position: fixed;
+	width: 750px;
+	height: 500px;
+	background-color: $blank;
+	border: 1px solid $black;
+	z-index: 98;
+	.chat-module-messaging {
+		display: flex;
+		.chat-module-messages {
+			width: 60%;
+		}
+		.chat-module-contacts {
+			width: 40%;
+		}
+	}
+}

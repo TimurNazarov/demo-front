@@ -5,6 +5,7 @@ export default {
   init_pusher(context) {
     context.commit('init_pusher')
   },
+  // friends
   set_friendable_users(context, users) {
     context.commit('set_friendable_users', users)
   },
@@ -38,6 +39,10 @@ export default {
   remove_incoming_friend_request(context, from_user) {
     context.commit('remove_incoming_friend_request', from_user)
     context.commit('add_friendable_user', from_user)
+  },
+  // messaging
+  set_contacts(context, contacts) {
+    context.commit('set_contacts', contacts)
   },
   // etc
   show_message_popup(context, message) {

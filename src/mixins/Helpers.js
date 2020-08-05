@@ -8,6 +8,14 @@ export default {
       this.$store.dispatch('set_user', user)
       // init pusher
       this.init_pusher(user)
+    },
+    pluck(array, key) {
+      return array.map(o => o[key]);
+    },
+    cut_string(string, max_characters) {
+      let sliced = string.slice(0, max_characters - 3)
+      let trimmed = sliced.trim()
+      return trimmed + '...'
     }
   },
   mixins: [Pusher]

@@ -17,8 +17,7 @@ export default {
     let loaded_users = state.friendable_users.loaded
     let new_users = state.friendable_users.new
     let loaded_user = loaded_users.findIndex(f => f.id == user.id)
-    console.log(loaded_user)
-    if(loaded_user) {
+    if(loaded_user >= 0) {
       loaded_users.splice(loaded_user, 1)
     } else {
       let new_user = state.friendable_users.new.findIndex(f => f.id == user.id)
@@ -52,6 +51,8 @@ export default {
   // friends
   add_friend(state, friend) {
     state.user.friends.new.push(friend)
+    // add to contacts
+    state.messaging.contacts.new.push(friend)
   },
   remove_friend(state, friend) {
     let loaded_friends = state.user.friends.loaded
@@ -63,6 +64,10 @@ export default {
       let new_friend = new_friends.findIndex(f => f.id == friend.id)
       new_friends.splice(new_friend, 1)
     }
+  },
+  // messaging
+  set_contacts(state, contacts) {
+    state.messaging.contacts.loaded = contacts
   },
   // etc
   show_message_popup(state, message) {
