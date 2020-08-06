@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export default {
   set_user(state, user) {
   	state.user = user
@@ -37,7 +39,6 @@ export default {
     state.user.friend_requests.incoming.new.push(request)
   },
   remove_incoming_friend_request(state, from_user) {
-    console.log(from_user)
     let loaded_incoming_requests = state.user.friend_requests.incoming.loaded
     let new_incoming_requests = state.user.friend_requests.incoming.new
     let loaded_incoming_request = loaded_incoming_requests.findIndex(r => r.from.id == from_user.id)
@@ -68,6 +69,39 @@ export default {
   // messaging
   set_contacts(state, contacts) {
     state.messaging.contacts.loaded = contacts
+  },
+  update_active_contact(state, contact) {
+    state.messaging.active_contact = contact
+  },
+  set_contact_messages(state, data) {
+    if(!state.messaging.messages[data.contact_id]) {
+      Vue.set(state.messaging.messages, data.contact_id, {})
+      Vue.set(state.messaging.messages[data.contact_id], 'loaded' , {})
+      Vue.set(state.messaging.messages[data.contact_id], 'new', {})
+    }
+    state.messaging.messages[data.contact_id].loaded = data.messages
+  },
+  add_new_message(state, message) {
+    if(!state.messaging.messages[message.from]) {
+      Vue.set(state.messaging.messages, message.from, {})
+      Vue.set(state.messaging.messages[message.from], 'loaded' , {})
+      Vue.set(state.messaging.messages[message.from], 'new', {})
+    }
+    if(!state.messaging.messages[message.from].new[message.date]) {
+      Vue.set(state.messaging.messages[message.from].new, message.date, [])
+    }
+    state.messaging.messages[message.from].new[message.date].push(message)
+  },
+  update_last_message(state, message) {
+    let loaded_contacts = state.messaging.contacts.loaded
+    let new_contacts = state.messaging.contacts.new
+    let loaded_contact = loaded_contacts.findIndex(c => c.id == message.from)
+    if(loaded_contact >= 0) {
+      loaded_contacts[loaded_contact].last_private_message = message
+    } else {
+      let new_contact = new_contacts.findIndex(c => c.id == message.from)
+      new_contacts[new_contact].last_private_message = message
+    }
   },
   // etc
   show_message_popup(state, message) {

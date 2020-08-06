@@ -24,6 +24,7 @@ const state = {
 		new: []
 	},
 	messaging: {
+		active_contact: false,
 		contacts: {
 			loaded: [],
 			new: []

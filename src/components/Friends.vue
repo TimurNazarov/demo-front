@@ -28,9 +28,9 @@ export default {
       this.active_tab = 'friend-requests'
     }
     // get all non-friend users
-    let new_ids = this.pluck(this.friendable, 'id')
+    let exclude = this.pluck(this.friendable, 'id')
     let body = {
-      new: new_ids
+      exclude: exclude
     }
     this.axios.post(this.$store.getters.api_url + '/friendable', body)
       .then(res => {

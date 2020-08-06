@@ -1,5 +1,5 @@
 export default {
-  api_url(state, additional_properties) {
+  api_url(state) {
   	return state.backend_api_url
   },
   friendable_users(state) {
@@ -16,7 +16,13 @@ export default {
   },
   // messaging
   contacts(state) {
-    return state.messaging.contacts
+    return state.messaging.contacts.loaded.concat(state.messaging.contacts.new)
+  },
+  active_contact(state) {
+    return state.messaging.active_contact
+  },
+  active_contact_messages(state) {
+    return state.messaging.messages[state.messaging.active_contact.id]
   },
   // etc
   message_popup(state) {

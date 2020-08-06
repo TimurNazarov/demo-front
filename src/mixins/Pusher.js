@@ -23,7 +23,8 @@ export default {
     set_listeners(user) {
       window.Echo.private('user.' + user.id)
         .listen('NewPrivateMessage', (e) => {
-          console.log(e)
+          // console.log(e)
+          this.$store.dispatch('add_new_message', e.message)
         })
         .listen('NewFriendRequest', (e) => {
           this.$store.dispatch('add_incoming_friend_request', e.request)

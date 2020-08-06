@@ -1,8 +1,8 @@
 <template>
   <div class="chat-module-content">
     <div class="chat-module-messaging">
-      <messages :active_contact="active_contact"/>
-      <contacts :contacts="contacts" @contact_selected="active_contact = $event"/>
+      <messages/>
+      <contacts :contacts="contacts"/>
     </div>
   </div>
 </template>
@@ -21,18 +21,12 @@ export default {
         this.$store.dispatch('set_contacts', res.data.data)
       })
   },
-  data() {
-    return {
-      active_contact: false
-    }
-  },
   computed: {
     user() {
       return this.$store.getters.user
     },
     contacts() {
-      let contacts = this.$store.getters.contacts
-      return contacts.loaded.concat(contacts.new)
+      return this.$store.getters.contacts
     }
   },
   components: {

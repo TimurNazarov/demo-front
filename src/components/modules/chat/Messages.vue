@@ -1,25 +1,27 @@
 <template>
   <div class="chat-module-messages">
-    <!-- feed -->
+    <messages-feed v-if="messages" :messages="messages"/>
     <!-- input -->
   </div>
 </template>
 
 <script>
+import MessagesFeed from './MessagesFeed'
 
 export default {
   name: 'Messages',
-  computed: {
+  created() {
   },
-  props: {
-    active_contact: {
-      type: [Boolean, Number],
-      default: false
+  computed: {
+    active_contact() {
+      return this.$store.getters.active_contact
     },
-    messages: {
-      type: Array,
-      defualt: []
+    messages() {
+      return this.$store.getters.active_contact_messages
     }
+  },
+  components: {
+    'messages-feed': MessagesFeed
   }
 }
 </script>

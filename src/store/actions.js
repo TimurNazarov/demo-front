@@ -44,6 +44,16 @@ export default {
   set_contacts(context, contacts) {
     context.commit('set_contacts', contacts)
   },
+  update_active_contact(context, contact) {
+    context.commit('update_active_contact', contact)
+  },
+  set_contact_messages(context, data) {
+    context.commit('set_contact_messages', data)
+  },
+  add_new_message(context, message) {
+    context.commit('add_new_message', message)
+    context.commit('update_last_message', message)
+  },
   // etc
   show_message_popup(context, message) {
     context.commit('show_message_popup', message)
