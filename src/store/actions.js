@@ -25,9 +25,9 @@ export default {
     context.commit('add_friend', friend)
     context.commit('remove_incoming_friend_request', friend)
   },
-  incoming_friend_request_accepted(context, request) {
-    context.commit('add_friend', request.to)
-    context.commit('remove_outgoing_friend_request', request.to)
+  outgoing_friend_request_accepted(context, accepted_by) {
+    context.commit('add_friend', accepted_by)
+    context.commit('remove_outgoing_friend_request', accepted_by)
   },
   remove_friend(context, friend) {
     context.commit('remove_friend', friend)
@@ -41,31 +41,50 @@ export default {
     context.commit('add_friendable_user', from_user)
   },
   // messaging
-  set_contacts(context, contacts) {
-    context.commit('set_contacts', contacts)
-  },
   update_active_contact(context, contact) {
     context.commit('update_active_contact', contact)
+    // unread to null
+    let data = {
+      contact_id: contact.id,
+      nullify: true
+    }
+    context.commit('update_unread', data)
   },
   set_contact_messages(context, data) {
     context.commit('set_contact_messages', data)
   },
-  add_new_message(context, message) {
-    context.commit('add_new_message', message)
-    context.commit('update_last_message', message)
+  load_contact_messages(context, data) {
+    context.commit('prepend_contact_messages', data)
+  },
+  update_unread(context, data) {
+    context.commit('update_unread', data)
+  },
+  add_new_message(context, data) {
+    context.commit('add_new_message', data)
+    context.commit('update_unread', data)
+    context.commit('update_last_message', data)
+  },
+  contact_is_typing(context, id) {
+    context.commit('contact_is_typing', id)
+  },
+  contact_is_selected(context, contact) {
+    context.commit('contact_is_selected', contact)
+  },
+  mark_as_read(context, info) {
+    context.commit('mark_as_read', info)
   },
   // etc
   show_message_popup(context, message) {
     context.commit('show_message_popup', message)
   },
-  // modals 
-  open_modal(context, modal) {
-    context.commit('open_modal', modal)
+  // show 
+  show_window(context, window_name) {
+    context.commit('show_window', window_name)
   },
-  close_modal(context, modal) {
-    context.commit('close_modal', modal)
+  hide_window(context, window_name) {
+    context.commit('hide_window', window_name)
   },
-  toggle_modal(context, modal) {
-    context.commit('toggle_modal', modal)
-  },
+  toggle_window(context, window_name) {
+    context.commit('toggle_window', window_name)
+  }
 }

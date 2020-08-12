@@ -11,6 +11,7 @@ import actions from './actions'
 const state = {
 	backend_api_url: 'http://demo-back/api',
 	user_info_initialized: null, // promise
+	contacts_initialized: null, // promise
 	pusher_initizlized: false,
 	user: {
 		loaded: false,
@@ -31,7 +32,8 @@ const state = {
 		},
 		messages: {}
 	},
-	modals: {
+	show: {
+		chat_module: false,
 		notifications: false
 	},
 	message_popup: {

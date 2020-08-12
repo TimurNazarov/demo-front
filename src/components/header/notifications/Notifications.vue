@@ -40,14 +40,13 @@ export default {
   },
   methods: {
   	toggle_notifications() {
-      let notifications = this.$store.getters.modals.notifications
-  		if(!notifications) {
-        this.$store.dispatch('open_modal', 'notifications')
+  		if(!this.show) {
+        this.$store.dispatch('show_window', 'notifications')
         this.close_notifications()
         // mark notifications as read
         this.mark_as_read()
       } else {
-        this.$store.dispatch('close_modal', 'notifications')
+        this.$store.dispatch('hide_window', 'notifications')
       }
   	},
   	mouse_leaves() {
@@ -58,7 +57,7 @@ export default {
   		clearTimeout(this.timeout)
   		this.timeout = setTimeout(() => {
   			if(!this.mouseover) {
-  				this.$store.dispatch('close_modal', 'notifications')
+  				this.$store.dispatch('hide_window', 'notifications')
   			}
   		}, 2000)
   	},
@@ -81,7 +80,7 @@ export default {
     	return this.user.notifications.loaded.concat(this.user.notifications.new)
     },
     show() {
-    	return this.$store.getters.modals.notifications
+    	return this.$store.getters.show.notifications
     },
     unread() {
       let unread = this.notifications.some(n => {

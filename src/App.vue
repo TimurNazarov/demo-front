@@ -26,7 +26,6 @@ export default {
       // -- load user
       this.$store.state.user_info_initialized = this.axios.get(this.$store.getters.api_url+"/user/get")
       .then(res => this.set_user(res.data.data))
-      // .catch(er => console.log(er.response))
     }
   },
   computed: {

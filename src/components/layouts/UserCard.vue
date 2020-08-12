@@ -3,7 +3,7 @@
     <img class="profile-picture" :src="user.profile_picture_url" :alt="user.name">
     <div class="user-info">
       <p class="user-name">{{ user.name }}</p>
-      <div v-if="is_friend" class="btn btn-orange user-send-message">
+      <div v-if="is_friend" class="btn btn-orange user-send-message" @click="send_message">
         <div class="btn-content">
           <i class="fas fa-envelope"></i>
           <span>{{ $ml.get('friends.send_message') }}</span>
@@ -56,13 +56,18 @@
 export default {
   name: 'UserCard',
   methods: {
+    send_message() {
+      // open chat
+      this.$store.dispatch('show_window', 'chat_module')
+      this.$store.dispatch('update_active_contact', this.user)
+    },
     add_friend() {
       let body = {
         to: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friends/request/send", body)
-        .then(r => {
-          let request_id = r.data.data.id
+      this.axios.post(this.$store.getters.api_url+"/friend/requests/send", body)
+        .then(res => {
+          let request_id = res.data.data.id
           let request = {
             id: request_id,
             to: this.user
@@ -74,25 +79,28 @@ export default {
         })
     },
     remove_friend() {
-      let body = {
-        friend_id: this.user.id
+      // translate
+      if(confirm('Are you sure you want to remove ' + this.user.name + 'from your friend list?')) {
+        let body = {
+          friend_id: this.user.id
+        }
+        this.axios.post(this.$store.getters.api_url+"/friend/remove", body)
+          .then(r => {
+            this.$store.dispatch('remove_friend', this.user)
+            // popup message
+            let message = this.$ml.with('user', this.user.name).get('messages.friends.remove')
+            this.$store.dispatch('show_message_popup', message)
+          })
       }
-      this.axios.post(this.$store.getters.api_url+"/friends/remove", body)
-        .then(r => {
-          this.$store.dispatch('remove_friend', this.user)
-          // popup message
-          let message = this.$ml.with('user', this.user.name).get('messages.friends.remove')
-          this.$store.dispatch('show_message_popup', message)
-        })
     },
     cancel_request() {
       let body = {
         to: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friends/request/cancel", body)
-        .then(r => {
+      this.axios.post(this.$store.getters.api_url+"/friend/requests/cancel", body)
+        .then(res => {
           let request = {
-            id: r.data,
+            id: res.data,
             to: this.user
           }
           this.$store.dispatch('cancel_friend_request', request)
@@ -105,9 +113,9 @@ export default {
       let body = {
         from: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friends/request/accept", body)
-        .then(r => {
-          let new_friend = r.data.data
+      this.axios.post(this.$store.getters.api_url+"/friend/requests/accept", body)
+        .then(res => {
+          let new_friend = res.data.data
           this.$store.dispatch('accept_incoming_friend_request', new_friend)
           // popup message
           let message = this.$ml.with('user', this.user.name).get('messages.friends.accept')
@@ -118,8 +126,8 @@ export default {
       let body = {
         from: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friends/request/decline", body)
-        .then(r => {
+      this.axios.post(this.$store.getters.api_url+"/friend/requests/decline", body)
+        .then(res => {
           this.$store.dispatch('decline_friend_request', this.user)
           // popup message
           let message = this.$ml.with('user', this.user.name).get('messages.friends.decline')

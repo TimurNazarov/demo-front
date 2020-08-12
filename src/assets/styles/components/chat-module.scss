@@ -2,18 +2,201 @@
 
 .chat-module {
 	position: fixed;
-	width: 750px;
-	height: 500px;
-	background-color: $blank;
-	border: 1px solid $black;
+	right: 0;
+	bottom: 0;
 	z-index: 98;
-	.chat-module-messaging {
+	.chat-module-open {
+		font-size: 40px;
+		width: 75px;
+		height: 75px;
 		display: flex;
-		.chat-module-messages {
-			width: 60%;
+		align-items: center;
+		justify-content: center;
+		background-color: $orange;
+		cursor: pointer;
+		color: $blank;
+		&:hover {
+			background-color: lighten($orange, 5%);
 		}
-		.chat-module-contacts {
-			width: 40%;
+		border-radius: 15px 0 0 0;
+	}
+	.chat-module-close {
+		background-color: $blank;
+		padding: 5px;
+		position: absolute;
+		right: 0;
+    	top: -26px;
+		border: 1px solid lighten($black, 55%);
+		border-bottom: none;
+		cursor: pointer;
+	}
+	.unread-circle {
+		position: absolute;
+		i {
+			color: $red;
+			font-size: 22px;
+		}
+		span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: $blank;
+		}
+	}
+	.contact-typing {
+		font-size: $sm_text;
+		text-align: center;
+		margin-bottom: 10px;
+		i {
+			margin-left: 5px;
+		}
+	}
+	.chat-module-content {
+		width: 750px;
+		height: 500px;
+		background-color: $blank;
+		border: 1px solid lighten($black, 55%);
+		.chat-module-messaging {
+			display: flex;
+			height: 100%;
+			.chat-module-messages {
+				width: 60%;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				.chat-module-messages-feed {
+					overflow-y: hidden;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-end;
+					position: relative;
+					.chat-module-messages-feed-overflow {
+						overflow-y: auto;
+					}
+					.messages-feed-date-day {
+						width: 100%;
+						line-height: 30px;
+						text-align: center;
+					}
+					.messages-feed-date-day-floating {
+						width: calc(100% - 16px);
+						line-height: 30px;
+						text-align: center;
+						display: none;
+						border-bottom: 1px solid lighten($black, 55%);
+					}
+
+					.chat-module-messages-feed-output.in-sight .messages-feed-date-day-floating {
+						display: block;
+						position: absolute;
+						left: 0;
+						top: 0;
+						background-color: $blank;
+					}
+					.chat-module-messages-feed-date {
+						.chat-module-date-message-list {
+							display: flex;
+							flex-direction: column;
+							.chat-module-message {
+								width: 85%;
+								margin-bottom: 20px;
+								border-radius: 0 5px 5px 0;
+								background-color: lighten($orange, 28%);
+								padding: 10px;
+								.chat-module-message-content {
+									white-space: pre-line;
+									word-break: break-word;
+									font-size: $default_text;
+									line-height: 22px;
+									.chat-module-message-info {
+										float: right;
+										display: flex;
+										justify-content: flex-end;
+										align-items: center;
+										.chat-module-message-has-seen {
+											color: $orange;
+										}
+										.chat-module-message-time {
+											font-size: $sm_text;
+											margin-left: 10px;
+										}
+									}
+								}
+							}
+							.chat-module-outgoing-message {
+								align-self: flex-end;
+								border-radius: 5px 0 0 5px;
+								background-color: lighten($lightest_grey, 8%);
+							}
+						}
+					}
+				}
+				.chat-module-messages-input {
+					display: flex;
+					line-height: 50px;
+					height: 50px;
+					.chat-module-messages-input-text {
+						width: 85%;
+						border-bottom: none !important;
+						border-right: none !important;
+						border-left: none !important;
+						font-size: $avg_text;
+					}
+					.chat-module-messages-input-submit {
+						width: 15%;
+						text-align: center;
+					}
+				}
+			}
+			.chat-module-contacts {
+				width: 40%;
+				border-left: 1px solid lighten($black, 55%);
+				.chat-module-contact {
+					display: flex;
+					align-items: center;
+					padding: 10px;
+					height: 75px;
+					cursor: pointer;
+					&:hover {
+						background-color: lighten($orange, 33%);
+					}
+					.unread-circle {
+						position: relative;
+					}
+					.chat-module-contact-profile-picture {
+						height: 90%;
+					}
+					.chat-module-contact-info {
+						padding-left: 10px;
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						// align-items: center;
+						justify-content: space-between;
+						.contact-typing {
+							margin-bottom: 0;
+						}
+						.chat-module-contact-name-info {
+							margin-bottom: 10px;
+							display: flex;
+							justify-content: space-between;
+							.chat-module-contact-name {
+								font-weight: 600;
+							}
+							.chat-module-last-message-time {
+								font-size: $sm_text;
+							}
+						}
+						.chat-module-contact-last-message {
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							font-size: $sm_text;
+						}
+					}
+				}
+			}
 		}
 	}
 }

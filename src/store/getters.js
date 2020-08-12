@@ -15,11 +15,21 @@ export default {
     return state.pusher_initizlized
   },
   // messaging
-  contacts(state) {
-    return state.messaging.contacts.loaded.concat(state.messaging.contacts.new)
-  },
   active_contact(state) {
     return state.messaging.active_contact
+  },
+  chat_total_unread(state) {
+    var count = 0
+    state.user.friends.loaded.forEach(c => {
+      count += c.unread_count
+    })
+    state.user.friends.new.forEach(c => {
+      count += c.unread_count
+    })
+    return count
+  },
+  contact_messages: state => contact => {
+    return state.messaging.messages[contact.id]
   },
   active_contact_messages(state) {
     return state.messaging.messages[state.messaging.active_contact.id]
@@ -28,8 +38,8 @@ export default {
   message_popup(state) {
     return state.message_popup
   },
-  // modals
-  modals(state) {
-    return state.modals
+  // show
+  show(state) {
+    return state.show
   }
 }

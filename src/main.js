@@ -8,6 +8,8 @@ import './lang' // multilanguage
 
 
 Vue.use(VueAxios, axios)
+// console.log( -(new Date().getTimezoneOffset() / 60))
+//
 // axios config
 axios.defaults.headers.common['Accept'] = 'application/json'
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
@@ -23,6 +25,7 @@ axios.interceptors.response.use(response => {
 })
 
 Vue.config.productionTip = false
+
 
 new Vue({
   router,
