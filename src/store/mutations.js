@@ -195,6 +195,10 @@ export default {
       })
     })
   },
+  // notifications
+  add_notification(state, notification) {
+    state.user.notifications.unshift(notification)
+  },
   // etc
   show_message_popup(state, message) {
     state.message_popup.message = message

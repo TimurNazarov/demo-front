@@ -63,11 +63,7 @@ export default {
         })
         // .listen('eventname', (e) => {})
         .notification(n => {
-          // console.log(n)
-          // switch(notification.type) {
-          //   case "App\\Notifications\\NewAppointment": this.new_appointment(notification.appointment, notification.notification_data); break
-          //   // case 123: this.new_appointment(notification.appointment); break
-          // }
+          this.$store.dispatch('add_notification', n)
         })
         // whispering
         window.Echo.private('type-to.' + user.id)

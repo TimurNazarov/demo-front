@@ -35,6 +35,7 @@ export default {
   },
   decline_friend_request(context, from_user) {
     context.commit('remove_incoming_friend_request', from_user)
+    context.commit('add_friendable_user', from_user)
   },
   remove_incoming_friend_request(context, from_user) {
     context.commit('remove_incoming_friend_request', from_user)
@@ -72,6 +73,10 @@ export default {
   },
   mark_as_read(context, info) {
     context.commit('mark_as_read', info)
+  },
+  // notifications
+  add_notification(context, notification) {
+    context.commit('add_notification', notification)
   },
   // etc
   show_message_popup(context, message) {

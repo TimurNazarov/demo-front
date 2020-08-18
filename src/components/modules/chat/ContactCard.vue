@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-module-contact" @click="$emit('clicked')">
+  <div :class="{'chat-module-contact': true, 'chat-module-contact-active': contact.id == active_contact.id }" @click="$emit('clicked')">
     <img class="chat-module-contact-profile-picture" :src="contact.profile_picture_url" :alt="contact.name">
     <div class="chat-module-contact-info">
       <div class="chat-module-contact-name-info">
@@ -26,6 +26,11 @@ import Helpers from '../../../mixins/Helpers'
 
 export default {
   name: 'ContactCard',
+  computed: {
+    active_contact() {
+      return this.$store.getters.active_contact
+    }
+  },
   props: {
     contact: {
       type: Object,

@@ -4,6 +4,13 @@ export default {
 		en: 'English',
 		ru: 'Russian'
 	},
+	form: {
+		dropzone: {
+			drop_single: 'Drop your file here',
+			drop_multiple: 'Drop your files here',
+			error_extension: 'Forbidden file extension. Allowed: jpg, png',
+		}
+	},
 	messages: {
 		friends: {
 			add: 'Friend request to {user} is sent',
@@ -31,6 +38,12 @@ export default {
 		cancel: 'Cancel request',
 		accept: 'Accept',
 		decline: 'Decline'
+	},
+	notifications: {
+		message_for_type: {
+			'IncomingFriendRequest': 'You received a friend request from {name}',
+			'FriendRequestAccepted': '{name} has acccepted your friend request'
+		}
 	},
 	messaging: {
 		date: {

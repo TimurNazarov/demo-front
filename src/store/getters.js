@@ -5,9 +5,6 @@ export default {
   friendable_users(state) {
     return state.friendable_users.loaded.concat(state.friendable_users.new)
   },
-  user_set(state) {
-    return state.user ? true : false
-  },
   user(state) {
   	return state.user
   },

@@ -51,7 +51,6 @@ export default {
               }
               this.$store.dispatch('set_contact_messages', data)
             })
-
           this.$store.dispatch('contact_is_selected', contact)
           // else just mark new messages as read
         } else {

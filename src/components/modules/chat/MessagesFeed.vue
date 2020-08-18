@@ -78,9 +78,6 @@ export default {
     }
   },
   computed: {
-    days_count() {
-      return Object.keys(this.merged_messages).length
-    },
     merged_messages() {
       return {...this.messages.loaded, ...this.messages.new}
     },

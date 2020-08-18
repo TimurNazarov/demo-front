@@ -8,6 +8,7 @@ import './lang' // multilanguage
 
 
 Vue.use(VueAxios, axios)
+// UTC offset in hours
 // console.log( -(new Date().getTimezoneOffset() / 60))
 //
 // axios config

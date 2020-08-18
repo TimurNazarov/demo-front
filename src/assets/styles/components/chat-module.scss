@@ -152,6 +152,12 @@
 			.chat-module-contacts {
 				width: 40%;
 				border-left: 1px solid lighten($black, 55%);
+				.chat-module-contact-active {
+					background-color: lighten($orange, 22%);
+					&:hover {
+						background-color: lighten($orange, 22%) !important;
+					}
+				}
 				.chat-module-contact {
 					display: flex;
 					align-items: center;

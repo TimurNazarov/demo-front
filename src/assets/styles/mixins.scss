@@ -21,12 +21,15 @@
 	}
 }
 
-@mixin btn($color, $light_bg: false, $padding: true, $hover_text_color: false) {
+@mixin btn($color, $light_bg: false, $padding: true, $hover_text_color: false, $border: false) {
 	background-color: $color;
 	cursor: pointer;
 	user-select: none;
 	@if $padding {
 		padding: 0 10px;
+	}
+	@if $border {
+		border: 1px solid $black;
 	}
 	@if $light_bg {
 		color: $black;

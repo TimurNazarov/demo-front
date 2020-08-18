@@ -43,6 +43,14 @@ const routes = [
     meta: {
       for_visitors: true
     }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/components/Register'),
+    meta: {
+      for_visitors: true
+    }
   }
 ]
 // router init
@@ -62,7 +70,7 @@ router.beforeEach((to, from, next) => {
   }
   next({name: redirect_route_name})
 })
-router.afterEach((to, from) => {
-  // document.title = to.name
-})
+// router.afterEach((to, from) => {
+//   // document.title = to.name
+// })
 export default router

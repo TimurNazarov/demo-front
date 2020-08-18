@@ -19,8 +19,9 @@ html {
 	overflow: hidden;
 	height: 100%;
 }
-#app, #dashboard, #main-screen {
-	height: 100%;
+
+.container {
+	margin: 20px;
 }
 
 .message-popup {
@@ -53,15 +54,82 @@ html {
 }
 
 // forms
+form {
+	width: 600px;
+}
+
+input {
+	line-height: 50px;
+	height: 50px;
+	font-size: $avg_text;
+}
 input, textarea {
 	outline: none;
 	box-sizing: border-box;
 	border: 1px solid lighten($black, 55%);
 	transition: .3s;
-	padding: 1.5%;
+	padding: 0 10px;
+	box-sizing: border-box;
+	width: 100%;
 	&:focus {
-		border: 1px solid lighten($black, 15%);
+		border: 1px solid lighten($black, 26%);
 	}
+}
+
+.form-label {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-label-message {
+	margin-bottom: 10px;
+}
+
+.form-input {
+	margin-bottom: 10px;
+}
+
+.form-preview-image {
+	max-height: 100px;
+}
+
+.dropzone {
+	width: 250px;
+	height: 100px;
+	border: 3px dashed $black;
+	.dropzone-label {
+	* {
+		// disable dragleave event triggering while over child
+		pointer-events: none;
+	}
+		display: block;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		.dropzone-message {
+			margin-bottom: 10px;
+			text-align: center;
+		}
+		.dropzone-icon {
+			font-size: 30px;
+		}
+		.dropzone-input {
+			display: none;
+		}
+	}
+}
+.dropzone-dragging-over {
+	border: 3px dashed lighten($black, 44%);
+	color: lighten($black, 44%);
+}
+
+.dropzone-error {
+	border: 3px dashed $red;
+	color: $red;
 }
 
 

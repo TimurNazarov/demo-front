@@ -14,11 +14,7 @@ const state = {
 	contacts_initialized: null, // promise
 	pusher_initizlized: false,
 	user: {
-		loaded: false,
-		notifications: {
-			loaded: [],
-			new: []
-		}
+		loaded: false
 	},
 	friendable_users: {
 		loaded: [],

@@ -34,7 +34,7 @@ export default {
             localStorage.setItem('expires_at', expires_in + timestamp)
             this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
             // -- set user
-            this.set_user(res.data.user.data)
+            this.set_user(res.data.user)
             // .catch(er => console.log(er.response))
             this.$router.push('/')
           })

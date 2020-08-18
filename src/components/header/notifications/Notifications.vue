@@ -1,5 +1,5 @@
 <template>
-  <div class="notifications-component">
+  <div v-if="user.loaded" class="notifications-component">
     <div class="notifications">
       <div class="notification-bell" @click="toggle_notifications" @mouseover="mouseover = true" @mouseleave="mouse_leaves">
         <i class="fas fa-bell"></i>
@@ -9,12 +9,7 @@
       </div>
     	<div v-if="show" class="notifications-feed" @mouseover="mouseover = true" @mouseleave="mouse_leaves">
     		<ul>
-    			<li v-for="n in notifications" class="notification-element">
-            <transition name="fade">
-              <i class="fas fa-circle red-circle" v-if="n.read_at == null"></i>
-            </transition>
-    				<component :is="n.type"></component>
-    			</li>
+    			<notification-card v-for="notification in notifications" :key="notification.id" :notification="notification"/>
     		</ul>
     	</div>
     </div>
@@ -24,11 +19,7 @@
 <script>
 
 // layouts
-import FriendRequest from './layouts/FriendRequest'
-import Dummy from './layouts/Dummy'
-// mixins
-
-import UI from '../../../mixins/ui'
+import NotificationCard from './NotificationCard'
 
 export default {
   name: 'Notifications',
@@ -77,7 +68,7 @@ export default {
       return this.$store.getters.user
     },
     notifications() {
-    	return this.user.notifications.loaded.concat(this.user.notifications.new)
+    	return this.user.notifications
     },
     show() {
     	return this.$store.getters.show.notifications
@@ -90,9 +81,7 @@ export default {
     }
   },
   components: {
-  	'FriendRequest': FriendRequest,
-  	'Dummy': Dummy,
+  	'notification-card': NotificationCard
   },
-  mixins: [UI]
 }
 </script>
