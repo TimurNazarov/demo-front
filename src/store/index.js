@@ -11,11 +11,11 @@ import actions from './actions'
 const state = {
 	backend_api_url: 'http://demo-back/api',
 	user_info_initialized: null, // promise
-	contacts_initialized: null, // promise
 	pusher_initizlized: false,
 	user: {
 		loaded: false
 	},
+	friendable_set: false,
 	friendable_users: {
 		loaded: [],
 		new: []
@@ -29,10 +29,12 @@ const state = {
 		messages: {}
 	},
 	show: {
+		profile_menu: false,
 		chat_module: false,
 		notifications: false
 	},
 	message_popup: {
+		timeout: null,
 		show: false,
 		message: 'Hello'
 	},

@@ -11,6 +11,7 @@ export default {
   //friendable users
   set_friendable_users(state, users) {
     state.friendable_users.loaded = users
+    state.friendable_set = true
   },
   add_friendable_user(state, user) {
     state.friendable_users.new.push(user)
@@ -203,7 +204,8 @@ export default {
   show_message_popup(state, message) {
     state.message_popup.message = message
     state.message_popup.show = true
-    setTimeout(() => {
+    clearTimeout(state.message_popup.timeout)
+    state.message_popup.timeout = setTimeout(() => {
       state.message_popup.show = false
     }, 2000)
   },

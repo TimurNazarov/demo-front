@@ -150,6 +150,7 @@
 				}
 			}
 			.chat-module-contacts {
+				overflow-y: auto;
 				width: 40%;
 				border-left: 1px solid lighten($black, 55%);
 				.chat-module-contact-active {

@@ -66,37 +66,60 @@ input {
 input, textarea {
 	outline: none;
 	box-sizing: border-box;
-	border: 1px solid lighten($black, 55%);
-	transition: .3s;
 	padding: 0 10px;
 	box-sizing: border-box;
 	width: 100%;
-	&:focus {
-		border: 1px solid lighten($black, 26%);
-	}
+}
+
+.error-message {
+	color: $red;
 }
 
 .form-label {
 	display: flex;
 	flex-direction: column;
-}
-
-.form-label-message {
 	margin-bottom: 10px;
-}
-
-.form-input {
-	margin-bottom: 10px;
+	.form-label-message {
+		margin-bottom: 10px;
+	}
+	.form-input-wrapper {
+		background-color: $blank;
+		position: relative;
+		margin-bottom: 10px;
+		border: 1px solid lighten($black, 55%);
+		transition: .3s;
+		display: flex;
+		align-items: center;
+		&:focus-within {
+			border: 1px solid lighten($black, 26%);
+		}
+		.form-input {
+			background-color: transparent;
+		}
+		.form-show-password {
+			cursor: pointer;
+			padding-right: 10px;
+		}
+	}
+	.form-input-error {
+		background-color: lighten($red, 33%);
+		border: 1px solid lighten($red, 22%);
+		&:focus-within {
+			border: 1px solid $red;
+		}
+	}
 }
 
 .form-preview-image {
 	max-height: 100px;
+	margin-bottom: 10px;
 }
 
 .dropzone {
 	width: 250px;
 	height: 100px;
 	border: 3px dashed $black;
+	margin-bottom: 10px;
 	.dropzone-label {
 	* {
 		// disable dragleave event triggering while over child

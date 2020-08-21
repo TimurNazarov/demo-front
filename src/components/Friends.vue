@@ -4,11 +4,10 @@
       <li @click="switch_tab('/friends')">{{ $ml.get('friends.friends') }}</li>
       <li @click="switch_tab('/friends/requests')">{{ $ml.get('friends.requests') }}</li>
     </ul>
-    <!-- <component :is="tab_map_reverse[$route.path]"/> -->
     <router-view></router-view>
     <div class="friendable-list" v-if="friendable && $route.path == '/friends'">
       <p>Friendable users</p> <!-- translate -->
-      <user-list :users="friendable"/>
+      <user-list :users="friendable_merged"/>
     </div>
   </div>
 </template>
@@ -19,16 +18,16 @@ import FriendList from './friends/FriendList'
 import FriendRequests from './friends/FriendRequests'
 import UserList from './layouts/UserList'
 // mixins
-import Helpers from '../mixins/Helpers'
+import Helpers from '@/mixins/Helpers'
 
 export default {
   name: 'Friends',
   created() {
-    if(this.$route.params.tab == 'requests') {
-      this.active_tab = 'friend-requests'
-    }
+    // friendable list was already loaded
+    if(this.$store.getters.friendable_set) return
+    
     // get all non-friend users
-    let exclude = this.pluck(this.friendable, 'id')
+    let exclude = this.pluck(this.friendable.new, 'id')
     let body = {
       exclude: exclude
     }
@@ -43,25 +42,15 @@ export default {
         this.$router.push(route)
     }
   },
-  data() {
-    return {
-      active_tab: 'friend-list',
-      tab_map: {
-        'friend-list': '/friends',
-        'friend-requests': '/friends/requests'
-      },
-      tab_map_reverse: {
-        '/friends': 'friend-list',
-        '/friends/requests': 'friend-requests'
-      },
-    }
-  },
   computed: {
     user() {
       return this.$store.getters.user
     },
     friendable() {
       return this.$store.getters.friendable_users
+    },
+    friendable_merged() {
+      return this.friendable.loaded.concat(this.friendable.new)
     }
   },
   components: {

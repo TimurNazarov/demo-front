@@ -14,7 +14,7 @@
 
 <script>
 import ChatContent from './ChatContent'
-import Helpers from '../../../mixins/Helpers'
+import Helpers from '@/mixins/Helpers'
 
 export default {
   name: 'Chat',

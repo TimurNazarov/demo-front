@@ -22,7 +22,7 @@ axios.interceptors.response.use(response => {
    localStorage.removeItem('expires_in')
    router.push('/login')
   }
-  return error
+  return Promise.reject(error)
 })
 
 Vue.config.productionTip = false

@@ -31,6 +31,12 @@ export default {
   },
   methods: {
   	toggle_notifications() {
+      if(this.notifications.length <= 0) {
+        // popup message
+        let message = this.$ml.get('messages.notifications.empty')
+        this.$store.dispatch('show_message_popup', message)
+        return
+      }
   		if(!this.show) {
         this.$store.dispatch('show_window', 'notifications')
         this.close_notifications()
@@ -41,8 +47,10 @@ export default {
       }
   	},
   	mouse_leaves() {
-  		this.mouseover = !this.mouseover
-  		this.close_notifications()
+      if(this.show) {
+        this.mouseover = !this.mouseover
+        this.close_notifications()
+      }
   	},
   	close_notifications() {
   		clearTimeout(this.timeout)

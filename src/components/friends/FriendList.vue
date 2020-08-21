@@ -8,7 +8,7 @@
 
 <script>
 
-import UserList from '../layouts/UserList'
+import UserList from '@/components/layouts/UserList'
 
 export default {
   name: 'FriendList',

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ml from '../lang' // multilanguage
 
 
 Vue.use(VueRouter)

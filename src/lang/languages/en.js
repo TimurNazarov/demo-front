@@ -9,7 +9,30 @@ export default {
 			drop_single: 'Drop your file here',
 			drop_multiple: 'Drop your files here',
 			error_extension: 'Forbidden file extension. Allowed: jpg, png',
-		}
+		},
+		input: {
+			name: 'Name',
+			email: 'Email',
+			password: 'Password'
+		},
+		validation: {
+			name: {
+		        regex: /^[a-zA-Zа-яА-Я\- ]{3,36}$/,
+		        error: 'Must contain between 3 and 36 characters. Spaces and dashes are allowed'
+			},
+			email: {
+		        regex: /^[\w._]+@\w+\.\w+$/,
+		        error: 'Must contain a valid email address'
+			},
+			password: {
+		        regex: /^[\w!@#$%^&*]{8,42}$/,
+		        error: 'Must contain between 8 and 42 characters'
+			},
+			string: {
+		        regex: /^[\w!@#$%^&*]{1,500}$/,
+		        error: 'Please enter a valid input'
+			},
+		},
 	},
 	messages: {
 		friends: {
@@ -18,6 +41,9 @@ export default {
 			cancel: 'Friend request to {user} is cancelled',
 			accept: 'Friend request from {user} is accepted',
 			decline: 'Friend request from {user} is declined'
+		},
+		notifications: {
+			empty: 'You have no notifications'
 		}
 	},
 	pages: {
@@ -42,7 +68,7 @@ export default {
 	notifications: {
 		message_for_type: {
 			'IncomingFriendRequest': 'You received a friend request from {name}',
-			'FriendRequestAccepted': '{name} has acccepted your friend request'
+			'FriendRequestAccepted': '{name} has accepted your friend request'
 		}
 	},
 	messaging: {
@@ -62,5 +88,12 @@ export default {
 			'11': 'November',
 			'12': 'December',
 		}
+	},
+	// custom error codes(frontend translatable errors)
+	demo_errors: {
+		900: 'Something went wrong',
+		901: 'User was not found(Wrong credentials)',
+		902: 'You must verify your email address first in order to be able to login',
+		903: 'This email address already exists'
 	}
 }

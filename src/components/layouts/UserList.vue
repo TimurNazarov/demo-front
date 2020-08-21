@@ -12,7 +12,7 @@
 <script>
 
 import UserCard from './UserCard'
-import TransitionGroupFlexboxFix from '../../mixins/TransitionGroupFlexboxFix'
+import TransitionGroupFlexboxFix from '@/mixins/TransitionGroupFlexboxFix'
 
 export default {
   name: 'UserList',

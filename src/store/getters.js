@@ -3,7 +3,10 @@ export default {
   	return state.backend_api_url
   },
   friendable_users(state) {
-    return state.friendable_users.loaded.concat(state.friendable_users.new)
+    return state.friendable_users
+  },
+  friendable_set(state) {
+    return state.friendable_set
   },
   user(state) {
   	return state.user

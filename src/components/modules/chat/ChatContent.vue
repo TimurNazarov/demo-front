@@ -10,7 +10,7 @@
 <script>
 import Messages from './Messages'
 import Contacts from './Contacts'
-import Helpers from '../../../mixins/Helpers'
+import Helpers from '@/mixins/Helpers'
 
 export default {
   name: 'ChatContent',

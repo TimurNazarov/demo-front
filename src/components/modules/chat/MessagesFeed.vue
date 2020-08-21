@@ -19,8 +19,8 @@
 <script>
 
 import MessageCard from './MessageCard'
-import Helpers from '../../../mixins/Helpers'
-import MessagesFeedScroll from '../../../mixins/MessagesFeedScroll'
+import Helpers from '@/mixins/Helpers'
+import MessagesFeedScroll from '@/mixins/MessagesFeedScroll'
 import moment from 'moment'
 
 export default {

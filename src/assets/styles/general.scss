@@ -5,6 +5,16 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	.header-logo-wrapper {
+		display: flex;
+		align-items: center;
+		.header-logo-link {
+			line-height: 0;
+			.header-logo {
+				max-width: 50px;
+			}
+		}
+	}
 	.header-navigation {
 		ul {
 			display: flex;
@@ -29,15 +39,15 @@ header {
 			}
 		}
 	}
-	.header-profile {
+	.header-profile-component {
 		display: flex;
 		align-items: center;
 		.notifications {
 			position: relative;
+			margin-right: 20px;
 			.notification-bell {
 				font-size: 22px;
 				cursor: pointer;
-				margin: 0 20px;
 				position: relative;
 				.red-circle {
 					position: absolute;
@@ -47,26 +57,19 @@ header {
 				}
 			}
 			.notifications-feed {
+				@include bordered_list;
 				width: 300px;
 				position: absolute;
 				top: 100%;
 				right: 25%;
-				border: 1px solid lighten($black, 55%);
 				z-index: 99;
 				background-color: $blank;
 				max-height: 500px;
 				overflow: auto;
 				.notification-element {
 					height: 60px;
-					border-bottom: 1px solid lighten($black, 55%);
 					position: relative;
 					font-size: $sm_text;
-					&:last-child {
-						border-bottom: none;
-					}
-					&:hover {
-						background-color: lighten($orange, 33%);
-					}
 					.red-circle {
 						font-size: 8px;
 						position: absolute;
@@ -91,6 +94,39 @@ header {
 						.notification-time {
 							margin-bottom: 5px;
 						}
+					}
+				}
+			}
+		}
+		.header-profile-menu {
+			position: relative;
+			.profile-menu-picture {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				.profile-menu-picture-image {
+					max-width: 50px;
+					border-radius: 50%;
+					margin-right: 5px;
+				}
+				i {
+					font-size: 20px;
+				}
+			}
+			.profile-menu-list {
+				@include bordered_list;
+				background-color: $blank;
+				position: absolute;
+				top: 100%;
+				right: 25%;
+				z-index: 100;
+				li {
+					a {
+						cursor: pointer;
+						display: block;
+						line-height: 50px;
+						padding: 0 5px;
+						color: $black;
 					}
 				}
 			}
