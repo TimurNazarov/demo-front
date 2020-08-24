@@ -1,6 +1,8 @@
 <template>
   <li class="user-card">
-    <img class="profile-picture" :src="user.profile_picture_url" :alt="user.name">
+    <div class="user-card-profile-picture-wrapper">
+      <img class="user-card-profile-picture" :src="profile_picture_url(user.profile_picture_url)" :alt="user.name">
+    </div>
     <div class="user-info">
       <p class="user-name">{{ user.name }}</p>
       <div v-if="is_friend" class="btn btn-orange user-send-message" @click="send_message">
@@ -52,6 +54,8 @@
 </template>
 
 <script>
+// mixins
+import Helpers from '@/mixins/Helpers'
 
 export default {
   name: 'UserCard',
@@ -85,7 +89,7 @@ export default {
           friend_id: this.user.id
         }
         this.axios.post(this.$store.getters.api_url+"/friend/remove", body)
-          .then(r => {
+          .then(() => {
             this.$store.dispatch('remove_friend', this.user)
             // popup message
             let message = this.$ml.with('user', this.user.name).get('messages.friends.remove')
@@ -127,7 +131,7 @@ export default {
         from: this.user.id
       }
       this.axios.post(this.$store.getters.api_url+"/friend/requests/decline", body)
-        .then(res => {
+        .then(() => {
           this.$store.dispatch('decline_friend_request', this.user)
           // popup message
           let message = this.$ml.with('user', this.user.name).get('messages.friends.decline')
@@ -169,6 +173,7 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  mixins: [Helpers]
 }
 </script>

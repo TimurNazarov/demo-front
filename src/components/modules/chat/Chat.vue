@@ -29,10 +29,11 @@ export default {
       // if not loaded yet
       if(!this.messages || !this.messages.loaded.length) {
         let contact_messages = this.$store.getters.contact_messages(contact)
+        var exclude
         if(contact_messages && contact_messages.new) {
-          var exclude = this.pluck_nested_messages(contact_messages.new, 'id')
+          exclude = this.pluck_nested_messages(contact_messages.new, 'id')
         } else {
-          var exclude = []
+          exclude = []
         }
         // if first time selected 
         if(contact.initial_select) {

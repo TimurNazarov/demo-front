@@ -1,7 +1,7 @@
 <template>
   <div class="chat-module-messages-feed">
     <div class="chat-module-messages-feed-overflow" ref="messages_window">
-      <div v-for="(messages, date) in merged_messages" class="chat-module-messages-feed-output">
+      <div v-for="(messages, date) in merged_messages" :key="date" class="chat-module-messages-feed-output">
         <div class="chat-module-messages-feed-date">
           <div class="messages-feed-date-day-floating">{{ handle_date(date) }}</div>
           <div class="messages-feed-date-day">{{ handle_date(date) }}</div>
@@ -28,7 +28,7 @@ export default {
   methods: {
     handle_date(date) {
       var moment_utc =  moment.utc()
-      var date = moment.utc(date, 'DD-MM-yy')
+      date = moment.utc(date, 'DD-MM-yy')
       // is today
       if(moment_utc.isSame(date, 'day')) {
         return this.$ml.get('messaging.date.today')
@@ -55,10 +55,11 @@ export default {
     paginate() {
       // load messages
       let contact_messages = this.active_contact_messages
+      var exclude
       if(contact_messages && contact_messages.new) {
-        var exclude = this.pluck_nested_messages(contact_messages.new, 'id')
+        exclude = this.pluck_nested_messages(contact_messages.new, 'id')
       } else {
-        var exclude = []
+        exclude = []
       }
       this.active_contact.page++
       let body = {

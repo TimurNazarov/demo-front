@@ -12,7 +12,6 @@
 <script>
 import MessagesFeed from './MessagesFeed'
 import MessagesInput from './MessagesInput'
-import moment from 'moment'
 
 export default {
   name: 'Messages',

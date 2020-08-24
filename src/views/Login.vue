@@ -5,7 +5,10 @@
         <!-- translate -->
         <demo-input label="Email" field="string" v-model="form.email.value" :display_errors="display_errors" @valid="form.email.valid = $event"/>
         <demo-input label="Password" field="string" type="password" v-model="form.password.value" :display_errors="display_errors" @valid="form.password.valid = $event"/>
-        <div class="btn btn-default" @click="!submit_blocked ? login() : false">Login</div>
+        <div class="btn btn-default" @click="!submit_blocked ? login() : false">
+          <demo-loader :show="submit_blocked" :size="30"/>
+          <span v-if="!submit_blocked">Login</span>
+        </div>
       </form>
       <p v-if="backend_error" class="error-message">{{ backend_error }}</p>
     </div>
@@ -13,7 +16,8 @@
 </template>
 
 <script>
-
+// modules
+import Loader from '@/components/modules/loader/Loader'
 // mixins
 import Helpers from '@/mixins/Helpers'
 import Form from '@/mixins/Form'
@@ -65,6 +69,9 @@ export default {
           this.$router.push('/')
         })
     }
+  },
+  components: {
+    'demo-loader': Loader
   },
   mixins: [Helpers, Form]
 }

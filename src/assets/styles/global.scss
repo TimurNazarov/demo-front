@@ -24,6 +24,33 @@ html {
 	margin: 20px;
 }
 
+// loader
+
+.demo-loader {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 998;
+}
+.demo-loader-animation {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	animation: spin .5s infinite linear;
+	//
+	border: 5px solid lighten($black, 55%);
+	border-top-color: $orange;
+	border-left-color: $orange;
+	box-sizing: border-box;
+	z-index: 999;
+}
+
+// etc
+
 .message-popup {
 	position: fixed;
 	left: 50%;

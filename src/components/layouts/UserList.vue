@@ -1,7 +1,7 @@
 <template>
   <div class="user-list-layout">
       <transition-group name="vue-list" class="user-list" tag="ul" @before-leave="before_leave">
-        <user-card v-for="(user, index) in users"
+        <user-card v-for="user in users"
         class="vue-list-item"
         :key="key(user)"
         :user="get_user(user)"/>

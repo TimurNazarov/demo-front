@@ -29,6 +29,7 @@ const state = {
 		messages: {}
 	},
 	show: {
+		loader: true,
 		profile_menu: false,
 		chat_module: false,
 		notifications: false

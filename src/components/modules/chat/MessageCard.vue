@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import Helpers from '@/mixins/Helpers'
 
 export default {
   name: 'MessageCard',

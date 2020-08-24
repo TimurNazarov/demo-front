@@ -6,7 +6,7 @@
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
-
+// vue list
 .vue-list-move {
 	transition: transform .5s;
 }
@@ -20,7 +20,20 @@
   opacity: 0;
   transform: translateY(-75%);
 }
-
+// fade
+.fade-slow-enter-active, .fade-slow-leave-active {
+  transition: opacity .4s;
+}
+.fade-slow-enter, .fade-slow-leave-to {
+  opacity: 0;
+}
+.fade-fast-enter-active, .fade-fast-leave-active {
+  transition: opacity .2s;
+}
+.fade-fast-enter, .fade-fast-leave-to {
+  opacity: 0;
+}
+// open up
 .openup-enter-active {
   animation: openup .3s;
 }
@@ -41,6 +54,8 @@
 }
 
 .btn {
+	position: relative;
+	height: 50px;
 	line-height: 50px;
 	.btn-content {
 		text-align: center;

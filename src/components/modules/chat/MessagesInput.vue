@@ -27,7 +27,7 @@ export default {
         this.send()
         return
       }
-      Echo.private('type-to.' + this.active_contact.id)
+      window.Echo.private('type-to.' + this.active_contact.id)
         .whisper('typing', {
             id: this.user.id
         })

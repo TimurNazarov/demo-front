@@ -17,20 +17,20 @@ export default {
 		},
 		validation: {
 			name: {
-		        regex: /^[a-zA-Zа-яА-Я\- ]{3,36}$/,
-		        error: 'Must contain between 3 and 36 characters. Spaces and dashes are allowed'
+						regex: /^[a-zA-Zа-яА-Я\- ]{3,36}$/,
+						error: 'Must contain between 3 and 36 characters. Spaces and dashes are allowed'
 			},
 			email: {
-		        regex: /^[\w._]+@\w+\.\w+$/,
-		        error: 'Must contain a valid email address'
+						regex: /^[\w._]+@\w+\.\w+$/,
+						error: 'Must contain a valid email address'
 			},
 			password: {
-		        regex: /^[\w!@#$%^&*]{8,42}$/,
-		        error: 'Must contain between 8 and 42 characters'
+						regex: /^[\w!@#$%^&*]{8,42}$/,
+						error: 'Must contain between 8 and 42 characters'
 			},
 			string: {
-		        regex: /^[\w!@#$%^&*]{1,500}$/,
-		        error: 'Please enter a valid input'
+						regex: /^[\w!@#$%^&*]{1,500}$/,
+						error: 'Please enter a valid input'
 			},
 		},
 	},
@@ -44,6 +44,10 @@ export default {
 		},
 		notifications: {
 			empty: 'You have no notifications'
+		},
+		banners: {
+			registration_success: 'Registration is successful. You need to confirm your email now',
+			verify_success: 'You have verified your account. Now you can login'
 		}
 	},
 	pages: {

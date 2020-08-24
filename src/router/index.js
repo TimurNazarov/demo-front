@@ -11,17 +11,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/Home')
-  },
-  {
-    path: '/test',
-    name: 'Test',
-    component: () => import('@/components/Test.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Home')
   },
   {
     path: '/friends',
     // name: 'Friends',
-    component: () => import('@/components/Friends'),
+    component: () => import('@/views/Friends'),
     children: [
       {
         path: '',
@@ -38,7 +33,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/components/Login'),
+    component: () => import('@/views/Login'),
     meta: {
       for_visitors: true
     }
@@ -46,11 +41,19 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import('@/components/Register'),
+    component: () => import('@/views/Register'),
     meta: {
       for_visitors: true
     }
-  }
+  },
+  {
+    path: '/banner-message/:message_type/:banner_type',
+    name: 'BannerMessage',
+    component: () => import('@/views/BannerMessage'),
+    meta: {
+      for_visitors: true
+    }
+  },
 ]
 // router init
 const router = new VueRouter({

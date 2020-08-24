@@ -13,7 +13,10 @@
           <img v-if="form.profile_picture_file.preview" class="form-preview-image" :src="form.profile_picture_file.preview" style="max-width: 100px;">
         </label>
 
-        <div class="btn btn-default" @click="!submit_blocked ? submit() : false">Submit</div>
+        <div class="btn btn-default" @click="!submit_blocked ? submit() : false">
+          <demo-loader :show="submit_blocked" :size="30"/>
+          <span v-if="!submit_blocked">Submit</span>
+        </div>
       </form>
       <p v-if="backend_error" class="error-message">{{ backend_error }}</p>
     </div>
@@ -21,7 +24,8 @@
 </template>
 
 <script>
-
+// modules
+import Loader from '@/components/modules/loader/Loader'
 // mixins
 import Form from '@/mixins/Form'
 
@@ -69,11 +73,14 @@ export default {
           if(res.data.demo_error) {
             this.submit_blocked = false
             this.backend_error = this.$ml.get('demo_errors.' + res.data.demo_error)
-            return
+          } else {
+            this.$router.push('/banner-message/registration/success')
           }
         })
-        // .catch(err => console.log(err.response))
     },
+  },
+  components: {
+    'demo-loader': Loader
   },
   mixins: [Form]
 }

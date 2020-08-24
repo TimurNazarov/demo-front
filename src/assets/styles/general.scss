@@ -120,6 +120,7 @@ header {
 				top: 100%;
 				right: 25%;
 				z-index: 100;
+				width: 200px;
 				li {
 					a {
 						cursor: pointer;
@@ -145,14 +146,14 @@ header {
 	// align-items: center;
 	padding: 12.5px;
 	box-sizing: border-box;
-	.profile-picture {
-		max-height: 100px;
-		max-width: 100px;
+	.user-card-profile-picture-wrapper {
+		// height: 100px;
+		width: 100px;
 		margin-right: 10px;
 	}
 	.user-info {
 		padding-top: 5px;
-		width: 100%;
+		flex: 1;
 		.btn-content {
 			text-align: left;
 		}
@@ -161,19 +162,43 @@ header {
 		}
 		.user-send-message, .remove-friend {
 			line-height: 30px;
+			height: 30px;
 		}
 		.friend-request {
 			display: flex;
 			.btn {
 				line-height: 40px;
+				height: 40px;
 				width: 50%;
 			}
 		}
 		.add-user, .request-cancel {
 			line-height: 40px;
+			height: 40px;
 		}
 		.outgoing-friend-request {
 			margin-bottom: 10px;
 		}
 	}
+}
+
+// banners
+.banner-message {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 300px;
+	width: 100%;
+	.banner-message-icon {
+		margin-right: 10px;
+		font-size: 40px;
+	}
+	.banner-message-content {
+		color: $black;
+		font-size: $lg_text;
+	}
+}
+
+.banner-success {
+	background-color: lighten($salad, 20%);
 }

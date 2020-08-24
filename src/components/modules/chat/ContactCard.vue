@@ -1,6 +1,6 @@
 <template>
   <div :class="{'chat-module-contact': true, 'chat-module-contact-active': contact.id == active_contact.id }" @click="$emit('clicked')">
-    <img class="chat-module-contact-profile-picture" :src="contact.profile_picture_url" :alt="contact.name">
+    <img class="chat-module-contact-profile-picture" :src="profile_picture_url(contact.profile_picture_url)" :alt="contact.name">
     <div class="chat-module-contact-info">
       <div class="chat-module-contact-name-info">
         <span class="chat-module-contact-name">{{ contact.name }}</span>

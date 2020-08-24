@@ -27,7 +27,9 @@ export default {
       } else {
         return string
       }
-      
+    },
+    profile_picture_url(url) {
+      return url == null ? require('@/assets/images/default-profile-picture.jpg') : url
     }
   },
   mixins: [Pusher]
