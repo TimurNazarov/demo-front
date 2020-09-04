@@ -1,8 +1,16 @@
 // form modules
-import Dropzone from '@/components/modules/dropzone/Dropzone'
-import Input from '@/components/modules/input/Input'
+import Dropzone from '@/components/layouts/form/Dropzone'
+import Input from '@/components/layouts/form/Input'
+import Submit from '@/components/layouts/form/Submit'
 
 export default {
+  data() {
+    return {
+      submit_blocked: false,
+      display_errors: false,
+      backend_error: false
+    }
+  },
 	methods: {
     are_form_fields_valid(...fields) {
       // is every field valid
@@ -13,6 +21,7 @@ export default {
 	},
   components: {
     'dropzone': Dropzone,
-    'demo-input': Input
+    'demo-input': Input,
+    'demo-submit': Submit,
   }
 }

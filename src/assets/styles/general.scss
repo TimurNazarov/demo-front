@@ -1,142 +1,19 @@
-header {
-	border-bottom: 1px solid lighten($black, 55%);
-	padding: 0 15px;
-	height: $header_height;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	.header-logo-wrapper {
-		display: flex;
-		align-items: center;
-		.header-logo-link {
-			line-height: 0;
-			.header-logo {
-				max-width: 50px;
-			}
-		}
-	}
-	.header-navigation {
-		ul {
-			display: flex;
-			align-items: center;
-			li {
-				height: $header_height;
-				cursor: pointer;
-				&:first-child a {
-					padding-left: 0;
-				}
-				a {
-					padding: 0 10px;
-					display: block;
-					color: $black;
-					line-height: $header_height;
-				}
-				&:hover {
-					a {
-						color: $orange;
-					}
-				}
-			}
-		}
-	}
-	.header-profile-component {
-		display: flex;
-		align-items: center;
-		.notifications {
-			position: relative;
-			margin-right: 20px;
-			.notification-bell {
-				font-size: 22px;
-				cursor: pointer;
-				position: relative;
-				.red-circle {
-					position: absolute;
-					font-size: 8px;
-					top: 0px;
-					right: -4px;
-				}
-			}
-			.notifications-feed {
-				@include bordered_list;
-				width: 300px;
-				position: absolute;
-				top: 100%;
-				right: 25%;
-				z-index: 99;
-				background-color: $blank;
-				max-height: 500px;
-				overflow: auto;
-				.notification-element {
-					height: 60px;
-					position: relative;
-					font-size: $sm_text;
-					.red-circle {
-						font-size: 8px;
-						position: absolute;
-						top: 50%;
-						transform: translateY(-50%);
-						left: 8.5px;
-					}
-					.notification-content {
-						box-sizing: border-box;
-						height: 100%;
-						padding: 5px 5px 5px 25px;
-						display: flex;
-						align-items: center;
-						.notification-icon {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							width: 50px;
-							font-size: 25px;
-							margin-right: 10px;
-						}
-						.notification-time {
-							margin-bottom: 5px;
-						}
-					}
-				}
-			}
-		}
-		.header-profile-menu {
-			position: relative;
-			.profile-menu-picture {
-				display: flex;
-				align-items: center;
-				cursor: pointer;
-				.profile-menu-picture-image {
-					max-width: 50px;
-					border-radius: 50%;
-					margin-right: 5px;
-				}
-				i {
-					font-size: 20px;
-				}
-			}
-			.profile-menu-list {
-				@include bordered_list;
-				background-color: $blank;
-				position: absolute;
-				top: 100%;
-				right: 25%;
-				z-index: 100;
-				width: 200px;
-				li {
-					a {
-						cursor: pointer;
-						display: block;
-						line-height: 50px;
-						padding: 0 5px;
-						color: $black;
-					}
-				}
-			}
-		}
-	}
+.load-more {
+	text-align: center;
+}
+
+.posts-output {
+	width: 100%;
+	max-width: 600px;
+}
+
+.friendable-list {
+	position: relative;
+	min-height: 150px;
 }
 
 .user-list {
-	@include grid(5);
+	@include grid;
 	justify-content: flex-start;
 }
 
@@ -147,38 +24,77 @@ header {
 	padding: 12.5px;
 	box-sizing: border-box;
 	.user-card-profile-picture-wrapper {
-		// height: 100px;
 		width: 100px;
 		margin-right: 10px;
+		cursor: pointer;
 	}
 	.user-info {
 		padding-top: 5px;
 		flex: 1;
-		.btn-content {
-			text-align: left;
-		}
 		.user-name {
 			margin-bottom: 12px;
+			cursor: pointer;
 		}
-		.user-send-message, .remove-friend {
-			line-height: 30px;
-			height: 30px;
-		}
-		.friend-request {
-			display: flex;
-			.btn {
-				line-height: 40px;
-				height: 40px;
-				width: 50%;
-			}
-		}
-		.add-user, .request-cancel {
+	}
+}
+.user-actions {
+	.btn-content {
+		text-align: left !important;
+	}
+	.user-send-message, .remove-friend {
+		line-height: 30px;
+		height: 30px;
+	}
+	.friend-request {
+		display: flex;
+		.btn {
 			line-height: 40px;
 			height: 40px;
+			width: 50%;
 		}
-		.outgoing-friend-request {
-			margin-bottom: 10px;
+	}
+	.add-user, .request-cancel {
+		line-height: 40px;
+		height: 40px;
+	}
+	.outgoing-friend-request {
+		margin-bottom: 10px;
+	}
+}
+// post card
+.post-card {
+	width: 100%;
+	max-width: 600px;
+	margin-bottom: 20px;
+	.post-card-user {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		.post-card-user-picture {
+			cursor: pointer;
+			max-width: 100px;
+			max-height: 100px;
+			border-radius: 50%;
+			margin-right: 10px;
 		}
+		.post-card-user-name {
+			cursor: pointer;
+			margin-bottom: 5px;
+		}
+		.post-card-post-date {
+			font-size: $sm_text;
+			color: lighten($black, 33%);
+			margin-bottom: 5px;
+		}
+		.post-card-post-title {
+			font-weight: 600;
+		}
+	}
+	.post-card-content {
+		white-space: pre-line;
+	    word-break: break-word;
+	    font-size: 16px;
+	    line-height: 22px;
 	}
 }
 

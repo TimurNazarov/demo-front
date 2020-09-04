@@ -15,21 +15,21 @@ Vue.use(VueAxios, axios)
 axios.defaults.headers.common['Accept'] = 'application/json'
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
 axios.interceptors.response.use(response => {
-   return response
+	return response
 }, error => {
-  if (error.response.status === 401) {
-   localStorage.removeItem('access_token')
-   localStorage.removeItem('expires_in')
-   router.push('/login')
-  }
-  return Promise.reject(error)
+	if (error.response.status === 401) {
+		localStorage.removeItem('access_token')
+		localStorage.removeItem('expires_in')
+		router.push('/login')
+	}
+	return Promise.reject(error)
 })
 
 Vue.config.productionTip = false
 
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app')

@@ -9,6 +9,7 @@ import mutations from './mutations'
 import actions from './actions'
 
 const state = {
+	backend_url: 'http://demo-back',
 	backend_api_url: 'http://demo-back/api',
 	user_info_initialized: null, // promise
 	pusher_initizlized: false,

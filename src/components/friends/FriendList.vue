@@ -7,15 +7,11 @@
 </template>
 
 <script>
-
+// layouts
 import UserList from '@/components/layouts/UserList'
 
 export default {
   name: 'FriendList',
-  created() {
-    localStorage.setItem('current_page', 'friends')
-    document.title = this.$ml.get('pages.friends')
-  },
   computed: {
     user() {
       return this.$store.getters.user

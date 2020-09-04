@@ -1,11 +1,9 @@
 <template>
   <div class="chat-module" v-if="user.loaded">
-    <!-- translate -->
-
-        <div v-if="unread > 0 && !show" class="unread-circle">
-          <i class="fas fa-circle"></i>
-          <span>{{ unread }}</span>
-        </div>
+    <div v-if="unread > 0 && !show" class="unread-circle">
+      <i class="fas fa-circle"></i>
+      <span>{{ unread }}</span>
+    </div>
     <div v-if="!show" class="chat-module-open" @click="show_module"><i class="fas fa-comment-dots"></i></div>
     <div v-if="show" class="chat-module-close" @click="hide_module"><i class="fa fa-times"></i></div>
     <chat-content v-if="show"/>

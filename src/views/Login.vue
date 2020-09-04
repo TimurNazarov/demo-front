@@ -2,22 +2,25 @@
   <div class="login-component">
     <div class="container">
       <form>
-        <!-- translate -->
-        <demo-input label="Email" field="string" v-model="form.email.value" :display_errors="display_errors" @valid="form.email.valid = $event"/>
-        <demo-input label="Password" field="string" type="password" v-model="form.password.value" :display_errors="display_errors" @valid="form.password.valid = $event"/>
-        <div class="btn btn-default" @click="!submit_blocked ? login() : false">
-          <demo-loader :show="submit_blocked" :size="30"/>
-          <span v-if="!submit_blocked">Login</span>
-        </div>
+        <demo-input v-model="form.email.value" 
+        :label="$ml.get('form.input.email')" 
+        field="string" 
+        :display_errors="display_errors" 
+        @valid="form.email.valid = $event"/>
+        <demo-input v-model="form.password.value" 
+        :label="$ml.get('form.input.password')" 
+        field="string" 
+        type="password" 
+        :display_errors="display_errors" 
+        @valid="form.password.valid = $event"/>
+        <demo-submit :submit_blocked="submit_blocked" :button_text="$ml.get('form.button.login')" @submitted="login"/>
+        <p v-if="backend_error" class="error-message">{{ backend_error }}</p>
       </form>
-      <p v-if="backend_error" class="error-message">{{ backend_error }}</p>
     </div>
   </div>
 </template>
 
 <script>
-// modules
-import Loader from '@/components/modules/loader/Loader'
 // mixins
 import Helpers from '@/mixins/Helpers'
 import Form from '@/mixins/Form'
@@ -35,10 +38,7 @@ export default {
           value: '1',
           valid: false
         },
-      },
-      submit_blocked: false,
-      display_errors: false,
-      backend_error: false
+      }
     }
   },
   methods: {
@@ -69,9 +69,6 @@ export default {
           this.$router.push('/')
         })
     }
-  },
-  components: {
-    'demo-loader': Loader
   },
   mixins: [Helpers, Form]
 }

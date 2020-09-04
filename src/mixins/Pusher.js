@@ -4,12 +4,32 @@ export default {
 	methods: {
     init_pusher(user) {
       window.Pusher = require('pusher-js')
+      // pusher
+      // window.Echo = new Echo({
+      //     broadcaster: 'pusher',
+      //     key: 'dde4cdad59f1d0755fff',
+      //     cluster: 'eu',
+      //     forceTLS: true,
+      //     authEndpoint : this.$store.getters.api_url + '/broadcasting/auth',
+      //     auth: {
+      //       headers: {
+      //           Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      //           Accept: 'applocation/json'
+      //       },
+      //     },
+      // })
+      // laravel websockets
       window.Echo = new Echo({
-          authEndpoint : this.$store.getters.api_url + '/broadcasting/auth',
           broadcaster: 'pusher',
-          key: 'dde4cdad59f1d0755fff',
+          key: 'dde4cdjf59f1d0755fff',
+          forceTLS: false,
+          // wsHost: this.$store.getters.backend_url,
           cluster: 'eu',
-          forceTLS: true,
+          wsHost: '127.0.0.1',
+          wsPort: 6001,
+          disableStats: true,
+          enabledTransports: ['ws', 'wss'],
+          authEndpoint : this.$store.getters.api_url + '/broadcasting/auth',
           auth: {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('access_token'),
@@ -17,10 +37,12 @@ export default {
             },
           },
       })
+      console.log(window.Echo)
       this.set_listeners(user)
       this.$store.dispatch('init_pusher')
     },
     set_listeners(user) {
+      console.log(window.Echo)
       window.Echo.private('user.' + user.id)
         .listen('NewPrivateMessage', (e) => {
           var data = {

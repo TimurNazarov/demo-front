@@ -4,6 +4,8 @@
       <li class="header-logo-wrapper"><router-link to="/" class="header-logo-link"><img class="logo header-logo" src="@/assets/logo.png" alt=""></router-link></li>
       <li><router-link to="/">{{ $ml.get('pages.home') }}</router-link></li>
       <li v-if="user.loaded"><router-link to="/friends">{{ $ml.get('pages.friends') }}</router-link></li>
+      <li v-if="user.loaded"><router-link to="/posts/search">{{ $ml.get('pages.posts_search') }}</router-link></li>
+
       <li v-if="!user.loaded"><router-link to="/login">{{ $ml.get('pages.login') }}</router-link></li>
       <li v-if="!user.loaded"><router-link to="/register">{{ $ml.get('pages.register') }}</router-link></li>
     </ul>

@@ -1,10 +1,8 @@
 <template>
   <div class="chat-module-messages">
     <!-- if contact messages set and loaded -->
-    <!-- <messages-feed v-if="messages && Object.keys(messages.loaded).length && active_contact || messages && Object.keys(messages.new).length && active_contact" :messages="messages"/> -->
     <messages-feed v-if="messages && (Object.keys(messages.loaded).length || Object.keys(messages.new).length) && active_contact" :messages="messages"/>
-    <!-- translate -->
-    <div v-if="!active_contact">Select contact</div>
+    <div v-if="!active_contact">{{ $ml.get('chat.select_contact') }}</div>
     <messages-input v-if="active_contact" @send="send"/>
   </div>
 </template>

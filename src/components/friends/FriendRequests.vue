@@ -2,11 +2,11 @@
   <div class="friend-requests-component">
       <ul class="friend-requests">
         <div v-if="incoming_friend_requests.length" class="incoming-friend-requests">
-          <p>Incoming</p> <!-- translate -->
+          <p>{{ $ml.get('friends.incoming') }}</p>
           <user-list :users="incoming_friend_requests" :user_key="'from'"/>
         </div>
         <div v-if="outgoing_friend_requests.length" class="outgoing-friend-requests">
-          <p>Outgoing</p> <!-- translate -->
+          <p>{{ $ml.get('friends.outgoing') }}</p>
           <user-list :users="outgoing_friend_requests"  :user_key="'to'"/>
         </div>
       </ul>
@@ -19,10 +19,6 @@ import UserList from '@/components/layouts/UserList'
 
 export default {
   name: 'FriendRequests',
-  created() {
-    localStorage.setItem('current_page', 'requests')
-    document.title = this.$ml.get('pages.requests')
-  },
   computed: {
     user() {
       return this.$store.getters.user

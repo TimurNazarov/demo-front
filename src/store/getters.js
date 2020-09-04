@@ -1,4 +1,7 @@
 export default {
+	backend_url(state) {
+		return state.backend_url
+	},
 	api_url(state) {
 		return state.backend_api_url
 	},
@@ -37,6 +40,18 @@ export default {
 	// etc
 	message_popup(state) {
 		return state.message_popup
+	},
+	is_friend: state => user_id => {
+		let loaded_friends = state.user.friends.loaded
+		let new_friends = state.user.friends.new
+		let loaded_friend = loaded_friends.find(f => f.id == user_id)
+		let new_friend = new_friends.find(f => f.id == user_id)
+		if(loaded_friend) {
+			return loaded_friend
+		} else if(new_friend) {
+			return new_friend
+		}
+		return false
 	},
 	// show
 	show(state) {

@@ -7,7 +7,8 @@
     <div class="container">
       <router-view></router-view>
       <div class="friendable-list" v-if="friendable && $route.path == '/friends'">
-        <p>Friendable users</p> <!-- translate -->
+        <p>{{ $ml.get('friends.friendable_users') }}</p>
+        <demo-loader :show="!friendable_set" :background="'#fff'" :z_index="996"/>
         <user-list :users="friendable_merged"/>
       </div>
     </div>
@@ -15,21 +16,15 @@
 </template>
 
 <script>
-
+// layouts
 import UserList from '@/components/layouts/UserList'
+// modules
+import Loader from '@/components/modules/loader/Loader'
 // mixins
 import Helpers from '@/mixins/Helpers'
 
 export default {
   name: 'Friends',
-  beforeCreate() {
-    this.$store.dispatch('show_window', 'loader')
-  },
-  mounted() {
-    if(this.friendable_set) {
-      this.$store.dispatch('hide_window', 'loader')
-    }
-  },
   created() {
     // friendable list was already loaded
     if(this.friendable_set) return
@@ -66,7 +61,8 @@ export default {
     }
   },
   components: {
-    'user-list': UserList
+    'user-list': UserList,
+    'demo-loader': Loader
   },
   mixins: [Helpers]
 }

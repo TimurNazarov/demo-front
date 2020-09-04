@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ContactCard from './ContactCard'
+import ContactCard from '../layouts/ContactCard'
 
 export default {
   name: 'Contacts',

@@ -138,10 +138,15 @@
 					height: 50px;
 					.chat-module-messages-input-text {
 						width: 85%;
+						border-top: 1px solid lighten($black, 55%);
 						border-bottom: none !important;
 						border-right: none !important;
 						border-left: none !important;
+						transition: .3s;
 						font-size: $avg_text;
+						&:focus {
+							border: 1px solid lighten($black, 26%);
+						}
 					}
 					.chat-module-messages-input-submit {
 						width: 15%;

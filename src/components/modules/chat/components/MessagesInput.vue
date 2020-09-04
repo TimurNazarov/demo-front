@@ -1,8 +1,7 @@
 <template>
   <div class="chat-module-messages-input">
     <textarea class="chat-module-messages-input-text" v-model="message" @keyup="type"></textarea>
-    <!-- translate -->
-    <div class="btn btn-orange chat-module-messages-input-submit" @click="send">Send</div>
+    <div class="btn btn-orange chat-module-messages-input-submit" @click="send">{{ $ml.get('chat.send') }}</div>
   </div>
 </template>
 

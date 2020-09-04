@@ -1,5 +1,7 @@
 // other mixins
 import Pusher from './Pusher'
+// packages
+import moment from 'moment'
 
 export default {
 	methods: {
@@ -30,7 +32,28 @@ export default {
     },
     profile_picture_url(url) {
       return url == null ? require('@/assets/images/default-profile-picture.jpg') : url
-    }
+    },
+    format_date(date, timestamp = false) {
+      var moment_utc =  moment.utc()
+      if(timestamp) {
+        date = moment.unix(date).utc()
+      } else {
+        date = moment.utc(date, 'DD-MM-yy')
+      }
+      // is today
+      if(moment_utc.isSame(date, 'day')) {
+        return this.$ml.get('messaging.date.today')
+        // is yesterday
+      } else if(moment_utc.subtract(1, 'days').isSame(date, 'day')) {
+        return this.$ml.get('messaging.date.yesterday')
+        // is current year
+      } else if(moment_utc.isSame(date, 'year')) {
+        return date.format('D') + ' ' + this.$ml.get('messaging.date.' + (date.month() + 1))
+        // else return full date
+      } else {
+        return date.format('D') + ' ' + this.$ml.get('messaging.date.' + (date.month() + 1)) + ' ' + date.year()
+      }
+    },
   },
   mixins: [Pusher]
 }

@@ -35,6 +35,7 @@ export default {
         array.push(file)
       },
       process_files(files) {
+        this.is_dragging_over = false
         if(!this.valid_files(files)) {
           this.error = this.$ml.get('form.dropzone.error_extension')
           clearTimeout(this.error_timeout)

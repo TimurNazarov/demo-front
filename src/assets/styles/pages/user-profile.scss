@@ -1,0 +1,45 @@
+@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/mixins.scss";
+.user-profile-header {
+	background-color: $lightest_grey;
+	padding-top: 100px;
+	.user-profile-header-content {
+		display: flex;
+		align-items: flex-end;
+		padding: 0 350px;
+		.user-profile-header-picture {
+			max-width: 300px;
+			max-height: 300px;
+			margin-bottom: -150px;
+			border-radius: 50%;
+			margin-right: 30px;
+		}
+		.user-profile-header-name {
+			font-size: $xl_text;
+			margin-bottom: 20px;
+		}
+	}
+}
+.user-profile-post-form {
+	margin-bottom: 20px;
+}
+
+.user-profile {
+	padding-top: 175px;
+	.user-profile-content {
+		display: flex;
+		align-items: flex-start;
+		.user-profile-section-title {
+			font-size: $lg_text;
+			margin-bottom: 10px;
+		}
+		.user-profile-friends  {
+			margin-right: 50px;
+			max-width: 650px;
+			flex: 1;
+			.user-list {
+				@include grid(2);
+			}
+		}
+	}
+}

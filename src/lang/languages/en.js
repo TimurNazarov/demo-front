@@ -1,5 +1,4 @@
 export default {
-	test: 'test text',
 	languages: {
 		en: 'English',
 		ru: 'Russian'
@@ -13,34 +12,45 @@ export default {
 		input: {
 			name: 'Name',
 			email: 'Email',
-			password: 'Password'
+			password: 'Password',
 		},
 		validation: {
 			name: {
-						regex: /^[a-zA-Zа-яА-Я\- ]{3,36}$/,
-						error: 'Must contain between 3 and 36 characters. Spaces and dashes are allowed'
+				error: 'Must contain between 3 and 36 characters. Spaces and dashes are allowed'
 			},
 			email: {
-						regex: /^[\w._]+@\w+\.\w+$/,
-						error: 'Must contain a valid email address'
+				error: 'Must contain a valid email address'
 			},
 			password: {
-						regex: /^[\w!@#$%^&*]{8,42}$/,
-						error: 'Must contain between 8 and 42 characters'
+				error: 'Must contain between 8 and 42 characters'
+			},
+			title: {
+				error: 'Must contain between 1 and 50 characters'
+			},
+			content: {
+				error: 'Must contain between 1 and 10000 characters'
 			},
 			string: {
-						regex: /^[\w!@#$%^&*]{1,500}$/,
-						error: 'Please enter a valid input'
-			},
+				error: 'Please enter a valid input'
+			}
 		},
+		button: {
+			submit: 'Submit',
+			post: 'Post',
+			login: 'Login',
+			register: 'Register',
+			search: 'Search',
+			load_more: 'Load more'
+		}
 	},
 	messages: {
 		friends: {
 			add: 'Friend request to {user} is sent',
-			remove: '{user} is removed form your friendlist',
 			cancel: 'Friend request to {user} is cancelled',
 			accept: 'Friend request from {user} is accepted',
-			decline: 'Friend request from {user} is declined'
+			decline: 'Friend request from {user} is declined',
+			remove: '{user} is removed form your friendlist',
+			remove_confirm: 'Are you sure you want to remove {name} from your friend list?'
 		},
 		notifications: {
 			empty: 'You have no notifications'
@@ -48,26 +58,43 @@ export default {
 		banners: {
 			registration_success: 'Registration is successful. You need to confirm your email now',
 			verify_success: 'You have verified your account. Now you can login'
+		},
+		'404': {
+			redirect: 'You will be redirected to home page in'
 		}
 	},
 	pages: {
+		default: 'Demo',
+		page_not_found: 'Page not found',
 		home: 'Home',
 		friends: 'Friends',
-		requests: 'Friend requests',
+		friend_requests: 'Friend requests',
 		register: 'Register',
 		login: 'Login',
-		logout: 'Log out'
+		logout: 'Logout',
+		my_profile: 'View profile',
+		posts_search: 'Posts',
+		banner_message: 'Message'
+	},
+	chat: {
+		is_typing: 'is typing',
+		no_messages: 'No messages',
+		select_contact: 'Select contact',
+		send: 'Send'
 	},
 	friends: {
 		friends: 'Friends',
 		requests: 'Requests',
+		friendable_users: 'Friendable users',
 		send_message: 'Send Message',
 		sent: 'Request sent',
 		add: 'Add friend',
 		remove: 'Remove friend',
 		cancel: 'Cancel request',
 		accept: 'Accept',
-		decline: 'Decline'
+		decline: 'Decline',
+		incoming: 'Incoming',
+		outgoing: 'Outgoing'
 	},
 	notifications: {
 		message_for_type: {
@@ -92,6 +119,22 @@ export default {
 			'11': 'November',
 			'12': 'December',
 		}
+	},
+	profile: {
+		friends: 'Friends',
+		posts: 'Posts',
+		no_posts: 'This user has no posts yet',
+		no_friends: 'This user has no friends yet',
+		logged_as: 'Logged as:',
+		form: {
+			title: 'Title',
+			content: 'Content',
+			submit: 'Post'
+		}
+	},
+	search: {
+		search_label: 'Search for posts',
+		no_posts_found: 'No posts found'
 	},
 	// custom error codes(frontend translatable errors)
 	demo_errors: {

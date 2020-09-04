@@ -1,6 +1,7 @@
 export default {
   set_user(context, user) {
     context.commit('set_user', user)
+    context.commit('hide_window', 'loader');
   },
   init_pusher(context) {
     context.commit('init_pusher')

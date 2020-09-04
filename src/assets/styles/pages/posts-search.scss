@@ -1,0 +1,30 @@
+@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/mixins.scss";
+
+.posts-search-page {
+	display: flex;
+	padding-top: 100px;
+	justify-content: center;
+	.posts-search-page-content {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		.posts-search-form {
+			display: flex;
+			margin-bottom: 20px;
+			.form-label {
+				flex: 1;
+				.form-input-wrapper {
+					height: 50px;
+					border-right: none;
+					margin-bottom: 0;
+					box-sizing: border-box;
+				}
+			}
+			.btn {
+				width: 100px;
+				text-align: center;
+			}
+		}
+	}
+}

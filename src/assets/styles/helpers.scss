@@ -65,6 +65,7 @@
 .btn-default {
 	@include btn($blank, $light_bg: true, $padding: true, $hover_text_color: false, $border: true);
 }
+
 .btn-orange {
 	@include btn($popcorn);
 }

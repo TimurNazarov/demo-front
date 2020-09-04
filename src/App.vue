@@ -5,13 +5,18 @@
 			<div class="message-popup" v-if="message_popup.show">{{ message_popup.message }}</div>
 		</transition>
 		<chat-module/>
-		<header-component/>
-		<router-view/>
+		<div class="app-content">
+			<header-component/>
+			<div class="app-dynamic-section">
+				<router-view :key="$route.fullPath"/>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
-//packages
+// packages
+import router from './router'
 // --
 // components
 import Header from './components/header/Header'
@@ -22,6 +27,15 @@ import Loader from './components/modules/loader/Loader'
 import Helpers from './mixins/Helpers'
 
 export default {
+	beforeCreate() {
+		router.beforeResolve((to, from, next) => {
+			let title = to.meta.ml_path ? this.$ml.get('pages.' + to.meta.ml_path) : false
+			if(title) {
+				document.title = title
+			}
+			next()
+		})
+	},
 	created() {
 		let logged = localStorage.getItem('access_token')
 		if(logged) {
@@ -36,7 +50,7 @@ export default {
 		let logged = localStorage.getItem('access_token')
 		if(logged) {
 			this.$store.state.user_info_initialized.then(() => {
-				this.$store.dispatch('hide_window', 'loader')
+				// this.$store.dispatch('hide_window', 'loader')
 			})
 		} else {
 			this.$store.dispatch('hide_window', 'loader')

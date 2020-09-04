@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Messages from './Messages'
-import Contacts from './Contacts'
+import Messages from './components/Messages'
+import Contacts from './components/Contacts'
 import Helpers from '@/mixins/Helpers'
 
 export default {

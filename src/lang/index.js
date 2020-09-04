@@ -11,7 +11,6 @@ export default new MLCreate({
   // save: process.env.NODE_ENV === 'production',
   languages: [
     new MLanguage('en').create(english),
-
     new MLanguage('ru').create(russian)
   ]
 })

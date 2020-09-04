@@ -1,8 +1,9 @@
 <template>
   <label class="form-label">
-    <p class="form-label-message">{{ label }}</p>
-    <div :class="{ 'form-input-wrapper': true, 'form-input-error': display_errors && !is_valid }">
-      <input class="form-input" :type="output_type" :value="value" v-model="input_value" @input="$emit('input', input_value)">
+    <p v-if="label" class="form-label-message">{{ label }}</p>
+    <div :class="{ 'form-input-wrapper': true, 'form-textarea-wrapper': this.type == 'textarea', 'form-input-error': display_errors && !is_valid }">
+      <textarea v-if="this.type == 'textarea'" class="form-input" v-model="input_value" @input="$emit('input', input_value)"></textarea>
+      <input v-else class="form-input" :type="output_type" v-model="input_value" @input="$emit('input', input_value)">
       <div v-if="type == 'password'" class="form-show-password" @click="show_password = !show_password">
         <i v-if="show_password" class="fas fa-eye"></i>
         <i v-if="!show_password" class="fad fa-eye"></i>
@@ -13,8 +14,7 @@
 </template>
 
 <script>
-
-// mixins
+import regex from '@/static/regex.json'
 
 export default {
   name: 'Input',
@@ -24,7 +24,8 @@ export default {
   data() {
     return {
       input_value: '',
-      show_password: false
+      show_password: false,
+      regex: regex
     }
   },
   methods: {
@@ -37,7 +38,7 @@ export default {
       return this.$ml.get('form.validation.' + this.field + '.error')
     },
     is_valid() {
-      let regex = this.$ml.get('form.validation.' + this.field + '.regex')
+      let regex = new RegExp(this.regex[this.field])
       return regex.test(this.input_value)
     },
     output_type() {
@@ -47,6 +48,11 @@ export default {
   watch: {
     is_valid(valid) {
       this.$emit('valid', valid)
+    },
+    value(new_value) {
+      if(new_value == '') {
+        this.input_value = ''
+      }
     }
   },
   props: {
@@ -66,7 +72,7 @@ export default {
       type: String,
       default: 'text' 
     },
-    value: String
+    value: String,
   }
 }
 </script>

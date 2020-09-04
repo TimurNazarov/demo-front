@@ -20,10 +20,181 @@ html {
 	height: 100%;
 }
 
-.container {
-	margin: 20px;
+.not-found-page{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	.not-found-404 {
+		color: $orange;
+		font-size: 200px;
+		margin-right: 20px;
+	}
+	.not-found-message {
+		font-size: $lg_text;
+	}
 }
 
+.container {
+	margin: 0 20px;
+}
+
+#app {
+	height: 100%;
+}
+.app-content {
+	height: 100%;
+	.app-dynamic-section {
+		height: calc(100% - #{$header_height});
+		overflow-y: auto;
+	}
+}
+// header
+header {
+	border-bottom: 1px solid lighten($black, 55%);
+	padding: 0 15px;
+	height: $header_height;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	.header-logo-wrapper {
+		display: flex;
+		align-items: center;
+		.header-logo-link {
+			line-height: 0;
+			.header-logo {
+				max-width: 50px;
+			}
+		}
+	}
+	.header-navigation {
+		ul {
+			display: flex;
+			align-items: center;
+			li {
+				height: $header_height;
+				cursor: pointer;
+				&:first-child a {
+					padding-left: 0;
+				}
+				a {
+					padding: 0 10px;
+					display: block;
+					color: $black;
+					line-height: $header_height;
+				}
+				&:hover {
+					a {
+						color: $orange;
+					}
+				}
+			}
+		}
+	}
+	.header-profile-component {
+		display: flex;
+		align-items: center;
+		.notifications {
+			position: relative;
+			margin-right: 20px;
+			.notification-bell {
+				font-size: 22px;
+				cursor: pointer;
+				position: relative;
+				.red-circle {
+					position: absolute;
+					font-size: 8px;
+					top: 0px;
+					right: -4px;
+				}
+			}
+			.notifications-feed {
+				@include bordered_list;
+				width: 300px;
+				position: absolute;
+				top: 100%;
+				right: 25%;
+				z-index: 99;
+				background-color: $blank;
+				max-height: 500px;
+				overflow: auto;
+				.notification-element {
+					height: 60px;
+					position: relative;
+					font-size: $sm_text;
+					.red-circle {
+						font-size: 8px;
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						left: 8.5px;
+					}
+					.notification-content {
+						box-sizing: border-box;
+						height: 100%;
+						padding: 5px 5px 5px 25px;
+						display: flex;
+						align-items: center;
+						.notification-icon {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							width: 50px;
+							font-size: 25px;
+							margin-right: 10px;
+						}
+						.notification-time {
+							margin-bottom: 5px;
+						}
+					}
+				}
+			}
+		}
+		.header-profile-menu {
+			position: relative;
+			.profile-menu-picture {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				.profile-menu-picture-image {
+					max-width: 50px;
+					border-radius: 50%;
+					margin-right: 5px;
+				}
+				i {
+					font-size: 20px;
+				}
+			}
+			.profile-menu-list {
+				@include bordered_list;
+				background-color: $blank;
+				position: absolute;
+				top: 100%;
+				right: 25%;
+				z-index: 100;
+				width: 200px;
+				.profile-logged-as {
+					padding: 5px;
+					font-weight: 600;
+					border-bottom: 1px solid lighten($black, 22%);
+					line-height: 20px;
+				}
+				li {
+					a {
+						cursor: pointer;
+						display: block;
+						line-height: 50px;
+						padding: 0 5px;
+						color: $black;
+					}
+				}
+			}
+		}
+	}
+}
+// header end
 // loader
 
 .demo-loader {
@@ -33,7 +204,6 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 998;
 }
 .demo-loader-animation {
 	position: absolute;
@@ -46,7 +216,6 @@ html {
 	border-top-color: $orange;
 	border-left-color: $orange;
 	box-sizing: border-box;
-	z-index: 999;
 }
 
 // etc
@@ -92,10 +261,11 @@ input {
 }
 input, textarea {
 	outline: none;
-	box-sizing: border-box;
 	padding: 0 10px;
 	box-sizing: border-box;
 	width: 100%;
+	color: $black;
+	border: none;
 }
 
 .error-message {
@@ -128,6 +298,15 @@ input, textarea {
 			padding-right: 10px;
 		}
 	}
+	.form-textarea-wrapper {
+		height: 150px;
+		max-height: 150px;
+		textarea {
+			padding: 10px;
+			width: 100%;
+			height: 100%;
+		}
+	}
 	.form-input-error {
 		background-color: lighten($red, 33%);
 		border: 1px solid lighten($red, 22%);
@@ -139,6 +318,7 @@ input, textarea {
 
 .form-preview-image {
 	max-height: 100px;
+	max-width: 100px;
 	margin-bottom: 10px;
 }
 
