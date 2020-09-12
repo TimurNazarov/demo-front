@@ -15,6 +15,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // packages
 import router from './router'
 // --
@@ -40,7 +42,7 @@ export default {
 		let logged = localStorage.getItem('access_token')
 		if(logged) {
 			// -- load user
-			this.$store.state.user_info_initialized = this.axios.get(this.$store.getters.api_url+"/user/get")
+			this.$store.state.user_info_initialized = this.axios.get(static_data.backend_api_url + "/user/get")
 			.then(res => {
 				this.set_user(res.data.data)
 			})

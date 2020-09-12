@@ -2,7 +2,7 @@
 	<div class="posts-search-page" v-if="logged_user.loaded">
 		<div class="posts-search-page-content">
 			<p>{{ $ml.get('search.search_label') }}</p>
-			<form class="posts-search-form" @submit.prevent="submit">
+			<form class="posts-search-form" @submit.prevent="!submit_blocked ? submit() : false">
 				<demo-input field="title" v-model="form.query.value" :display_errors="display_errors" @valid="form.query.valid = $event"/>
 				<demo-submit 
 				:submit_blocked="submit_blocked" 
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // modules
 import Loader from '@/components/modules/loader/Loader'
 // layouts
@@ -83,7 +85,7 @@ export default {
 				page: this.page,
 				q: search_query
 			}
-			this.axios.post(this.$store.getters.api_url + '/posts/search', body)
+			this.axios.post(static_data.backend_api_url + '/posts/search', body)
 				.then(res => {
 					if(res.data.demo_error) {
 						this.backend_error = this.$ml.get('demo_errors.' + res.data.demo_error)

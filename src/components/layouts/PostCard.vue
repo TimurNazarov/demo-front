@@ -15,6 +15,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // mixins
 import Helpers from '@/mixins/Helpers'
 
@@ -32,7 +34,7 @@ export default {
       if(picture_name == null) {
         return this.profile_picture_url(picture_name)
       } else {
-        return this.$store.getters.backend_url + '/uploads/profile/' + picture_name + '-small.jpg'
+        return static_data.backend_url + '/uploads/profile/' + picture_name + '-small.jpg'
       }
     }
   },

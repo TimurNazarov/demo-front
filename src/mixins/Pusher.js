@@ -1,4 +1,6 @@
 import Echo from 'laravel-echo'
+// static
+import static_data from '@/static/static.json'
 
 export default {
 	methods: {
@@ -10,7 +12,7 @@ export default {
       //     key: 'dde4cdad59f1d0755fff',
       //     cluster: 'eu',
       //     forceTLS: true,
-      //     authEndpoint : this.$store.getters.api_url + '/broadcasting/auth',
+      //     authEndpoint : static_data.backend_api_url + '/broadcasting/auth',
       //     auth: {
       //       headers: {
       //           Authorization: 'Bearer ' + localStorage.getItem('access_token'),
@@ -23,13 +25,12 @@ export default {
           broadcaster: 'pusher',
           key: 'dde4cdjf59f1d0755fff',
           forceTLS: false,
-          // wsHost: this.$store.getters.backend_url,
+          wsHost: static_data.websocket_host,
           cluster: 'eu',
-          wsHost: '127.0.0.1',
           wsPort: 6001,
           disableStats: true,
           enabledTransports: ['ws', 'wss'],
-          authEndpoint : this.$store.getters.api_url + '/broadcasting/auth',
+          authEndpoint : static_data.backend_api_url + '/broadcasting/auth',
           auth: {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('access_token'),
@@ -37,12 +38,10 @@ export default {
             },
           },
       })
-      console.log(window.Echo)
       this.set_listeners(user)
       this.$store.dispatch('init_pusher')
     },
     set_listeners(user) {
-      console.log(window.Echo)
       window.Echo.private('user.' + user.id)
         .listen('NewPrivateMessage', (e) => {
           var data = {
@@ -58,7 +57,7 @@ export default {
               contact_id: active_contact.id,
               new: true
             }
-            this.axios.post(this.$store.getters.api_url+"/messages/mark-as-read", body)
+            this.axios.post(static_data.backend_api_url + "/messages/mark-as-read", body)
           }
           this.$store.dispatch('add_new_message', data)
         })

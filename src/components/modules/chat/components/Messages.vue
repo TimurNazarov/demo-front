@@ -8,6 +8,9 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
+// components
 import MessagesFeed from './MessagesFeed'
 import MessagesInput from './MessagesInput'
 
@@ -19,7 +22,7 @@ export default {
         to: this.active_contact.id,
         content: message
       }
-      this.axios.post(this.$store.getters.api_url+"/message/send", body)
+      this.axios.post(static_data.backend_api_url + "/message/send", body)
         .then(res => {
           let new_message = res.data.data
           let data = {

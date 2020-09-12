@@ -1,7 +1,7 @@
 <template>
   <div class="login-component">
     <div class="container">
-      <form>
+      <form @submit.prevent="!submit_blocked ? login() : false">
         <demo-input v-model="form.email.value" 
         :label="$ml.get('form.input.email')" 
         field="string" 
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // mixins
 import Helpers from '@/mixins/Helpers'
 import Form from '@/mixins/Form'
@@ -51,7 +53,7 @@ export default {
         email: this.form.email.value,
         password: this.form.password.value,
       }
-      this.$store.state.user_info_initialized = this.axios.post(this.$store.getters.api_url + '/login', form)
+      this.$store.state.user_info_initialized = this.axios.post(static_data.backend_api_url + '/login', form)
         .then(res => {
           if(res.data.demo_error) {
             this.submit_blocked = false

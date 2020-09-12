@@ -22,7 +22,7 @@
 					<div class="user-profile-posts">
 						<p class="user-profile-section-title">{{ $ml.get('profile.posts') }}</p>
 						<div v-if="logged_user.id == user.id" class="user-profile-post-form">
-							<form>
+							<form @submit.prevent="!submit_blocked ? submit() : false">
 								<demo-input v-model="form.title.value" 
 								:label="$ml.get('profile.form.title')" 
 								field="title" 
@@ -33,6 +33,7 @@
 								field="content" type="textarea"  
 								:display_errors="display_errors" 
 								@valid="form.content.valid = $event"/>
+								<p></p>
 								<demo-submit :submit_blocked="submit_blocked" :button_text="$ml.get('form.button.post')" @submitted="submit"/>
 								<p v-if="backend_error" class="error-message">{{ backend_error }}</p>
 							</form>
@@ -55,6 +56,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // modules
 import Loader from '@/components/modules/loader/Loader'
 // layouts
@@ -74,7 +77,7 @@ export default {
 		let body = {
 			user_id: user_id
 		}
-		this.axios.post(this.$store.getters.api_url+"/user/profile", body)
+		this.axios.post(static_data.backend_api_url + "/user/profile", body)
 			.then(res => {
 				var user = res.data.data
 				if(document.title != user.name) {
@@ -117,7 +120,7 @@ export default {
 				title: this.form.title.value,
 				content: this.form.content.value
 			}
-			this.axios.post(this.$store.getters.api_url + '/post/add', body)
+			this.axios.post(static_data.backend_api_url + '/post/add', body)
 				.then(res => {
 					if(res.data.demo_error) {
 						this.backend_error = this.$ml.get('demo_errors.' + res.data.demo_error)
@@ -136,7 +139,7 @@ export default {
 				page: this.posts_page,
 				user_id: this.user.id
 			}
-			this.axios.post(this.$store.getters.api_url+"/user-posts", body)
+			this.axios.post(static_data.backend_api_url + "/user-posts", body)
 				.then(res => {
 					if(res.data.length == 0) {
 						this.no_more_posts = true

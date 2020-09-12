@@ -3,6 +3,29 @@ export default {
 		en: 'Английский',
 		ru: 'Русский'
 	},
+	home: {
+		welcoming: {
+			welcome_text: 'Добро пожаловать в Моё Демо!\
+			Этот проект базирован на VueJS[2.6.11](frontend) и Laravel[7.0](backend). \
+			Он включает в себя: live-chat переписку, систему друзей, пользовательские публикации(ElasticSearch) и мультиязычность(Английский, Русский). \
+			Другие технологии, которые были использованы: SASS(scss), Laravel-Passport API аутентификация, \
+			Vue VUEX, moment.js, Websocket-общение(Laravel-Echo, Laravel-websockets(на базе Pusher\'а)). \
+			Для более детальной информации Вы можете посетить GitHub репозитории:',
+			links: ['https://github.com/TimurNazarov/demo-front', 'https://github.com/TimurNazarov/demo-back'],
+			contacts: {
+				text: 'Мои контакты:',
+				telegram: {
+					text: 'Телеграм',
+					link_text: '@t_nazarov',
+					link: 'https://t.me/t_nazarov'
+				},
+				email: {
+					text: 'Email',
+					value: 'timur.nazarou@gmail.com'
+				}
+			}
+		}
+	},
 	form: {
 		dropzone: {
 			drop_single: 'Перетащите файл сюда',
@@ -13,6 +36,7 @@ export default {
 			name: 'Имя',
 			email: 'Email',
 			password: 'Пароль',
+			profile_picture: 'Изображение профиля'
 		},
 		validation: {
 			name: {
@@ -60,13 +84,13 @@ export default {
 			verify_success: 'Вы успешно подтвердили свой email. Теперь Вы можете авторизроваться'
 		},
 		'404': {
-			redirect: 'Вы будете перенаправлену на домашнюю страницу через'
+			redirect: 'Вы будете перенаправлену на главную страницу через'
 		}
 	},
 	pages: {
 		default: 'Demo',
 		page_not_found: 'Страница не найдена',
-		home: 'Домашняя страница',
+		home: 'Главная',
 		friends: 'Друзья',
 		friend_requests: 'Запросы в друзья',
 		register: 'Регистрация',
@@ -79,6 +103,7 @@ export default {
 	chat: {
 		is_typing: 'печатает',
 		no_messages: 'Нет сообщений',
+		no_contacts: 'У вас нет доступных контактов',
 		select_contact: 'Выберите контакт',
 		send: 'Отправить'
 	},

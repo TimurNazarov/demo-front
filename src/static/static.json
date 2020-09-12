@@ -1,0 +1,5 @@
+{
+	"websocket_host": "127.0.0.1",
+	"backend_url": "http://demo-back",
+	"backend_api_url": "http://demo-back/api"
+}

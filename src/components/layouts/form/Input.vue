@@ -14,6 +14,7 @@
 </template>
 
 <script>
+// static
 import regex from '@/static/regex.json'
 
 export default {

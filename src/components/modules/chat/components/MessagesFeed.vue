@@ -16,8 +16,11 @@
 </template>
 
 <script>
-
+// static
+import static_data from '@/static/static.json'
+// layouts
 import MessageCard from '../layouts/MessageCard'
+// mixins
 import Helpers from '@/mixins/Helpers'
 import MessagesFeedScroll from '@/mixins/MessagesFeedScroll'
 
@@ -48,7 +51,7 @@ export default {
         exclude: exclude,
         page: this.active_contact.page
       }
-      this.axios.post(this.$store.getters.api_url+"/messages", body)
+      this.axios.post(static_data.backend_api_url + "/messages", body)
         .then(res => {
           let data = {
             contact_id: this.active_contact.id,

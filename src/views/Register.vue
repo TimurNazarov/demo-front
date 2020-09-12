@@ -1,7 +1,7 @@
 <template>
   <div class="register-component">
     <div class="container">
-      <form>
+      <form @submit.prevent="!submit_blocked ? register() : false">
         <demo-input v-model="form.name.value" 
         :label="$ml.get('form.input.name')" 
         field="name" 
@@ -19,7 +19,7 @@
         :display_errors="display_errors" 
         @valid="form.password.valid = $event"/>
         <div class="form-label">
-          <p class="form-label-message">profile picture</p>
+          <p class="form-label-message">{{ $ml.get('form.input.profile_picture') }}</p>
           <dropzone @file_added="form.profile_picture_file = $event"/>
           <p v-if="form.profile_picture_file.preview" class="form-label-message">Preview</p>
           <img v-if="form.profile_picture_file.preview" class="form-preview-image" :src="form.profile_picture_file.preview">
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // mixins
 import Form from '@/mixins/Form'
 
@@ -71,7 +73,7 @@ export default {
       if(Object.keys(this.form.profile_picture_file).length > 0) {
         body.append('profile_picture_file', this.form.profile_picture_file)
       }
-      this.axios.post(this.$store.getters.api_url + '/register', body)
+      this.axios.post(static_data.backend_api_url + '/register', body)
         .then(res => {
           if(res.data.demo_error) {
             this.submit_blocked = false
@@ -80,6 +82,7 @@ export default {
             this.$router.push('/banner-message/registration/success')
           }
         })
+        .catch(err => console.log(err.response))
     },
   },
   mixins: [Form]

@@ -16,6 +16,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 // layouts
 import UserList from '@/components/layouts/UserList'
 // modules
@@ -34,7 +36,7 @@ export default {
     let body = {
       exclude: exclude
     }
-    this.axios.post(this.$store.getters.api_url + '/friendable', body)
+    this.axios.post(static_data.backend_api_url + '/friendable', body)
       .then(res => {
         this.$store.dispatch('set_friendable_users', res.data.data)
         this.$store.dispatch('hide_window', 'loader')

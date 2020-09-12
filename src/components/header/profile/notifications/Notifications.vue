@@ -17,7 +17,8 @@
 </template>
 
 <script>
-
+// static
+import static_data from '@/static/static.json'
 // layouts
 import NotificationCard from './NotificationCard'
 import HoverWindow from '@/mixins/HoverWindow'
@@ -35,7 +36,7 @@ export default {
 			this.toggle_window('notifications', this.mark_as_read)
 		},
 		mark_as_read() {
-			this.axios.get(this.$store.getters.api_url + '/notifications/read')
+			this.axios.get(static_data.backend_api_url + '/notifications/read')
 				.then(() => {
 					this.notifications.forEach(n => {
 						if(n.read_at == null) {

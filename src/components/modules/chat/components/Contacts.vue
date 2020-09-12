@@ -1,8 +1,9 @@
 <template>
   <div class="chat-module-contacts">
-    <ul class="contact-list">
+    <ul v-if="friends.length > 0" class="contact-list">
       <contact-card v-for="contact in friends" @clicked="$store.dispatch('update_active_contact', contact)" :key="contact.id" :contact="contact"/>
     </ul>
+    <p v-else>{{ $ml.get('chat.no_contacts') }}</p>
   </div>
 </template>
 

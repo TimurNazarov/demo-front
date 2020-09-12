@@ -11,7 +11,11 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
+// components
 import ChatContent from './ChatContent'
+// mixins
 import Helpers from '@/mixins/Helpers'
 
 export default {
@@ -21,6 +25,7 @@ export default {
       this.$store.dispatch('show_window', 'chat_module')
     },
     hide_module() {
+      this.$store.dispatch('update_active_contact', false)
       this.$store.dispatch('hide_window', 'chat_module')
     },
     select_contact(contact) {
@@ -42,7 +47,7 @@ export default {
             page: contact.page,
             initial: contact.initial_select
           }
-          this.axios.post(this.$store.getters.api_url+"/messages", body)
+          this.axios.post(static_data.backend_api_url + "/messages", body)
             .then(res => {
               let data = {
                 contact_id: contact.id,
@@ -57,7 +62,7 @@ export default {
             contact_id: contact.id,
             new: true
           }
-          this.axios.post(this.$store.getters.api_url+"/messages/mark-as-read", mark_as_read_body)
+          this.axios.post(static_data.backend_api_url + "/messages/mark-as-read", mark_as_read_body)
         }
       }
     }

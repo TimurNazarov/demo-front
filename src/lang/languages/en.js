@@ -3,6 +3,29 @@ export default {
 		en: 'English',
 		ru: 'Russian'
 	},
+	home: {
+		welcoming: {
+			welcome_text: 'Welcome to My Demo!\
+			This project is based on VueJS[2.6.11](frontend) and Laravel[7.0](backend). \
+			It includes: live-chat messaging, friend system, user posts(ElasticSearch) and multilanguage(English, Russian). \
+			Some other technologies which were used: SASS(scss), Laravel-Passport API authentication, \
+			Vue VUEX, moment.js, Websocket-communication(Laravel-Echo, Laravel-websockets(Pusher based)). \
+			For more detailed information on this demo project you may visit GitHub repostories:',
+			links: ['https://github.com/TimurNazarov/demo-front', 'https://github.com/TimurNazarov/demo-back'],
+			contacts: {
+				text: 'My contacts:',
+				telegram: {
+					text: 'Telegram',
+					link_text: '@t_nazarov',
+					link: 'https://t.me/t_nazarov'
+				},
+				email: {
+					text: 'Email',
+					value: 'timur.nazarou@gmail.com'
+				}
+			}
+		}
+	},
 	form: {
 		dropzone: {
 			drop_single: 'Drop your file here',
@@ -13,6 +36,7 @@ export default {
 			name: 'Name',
 			email: 'Email',
 			password: 'Password',
+			profile_picture: 'Profile picture'
 		},
 		validation: {
 			name: {
@@ -79,6 +103,7 @@ export default {
 	chat: {
 		is_typing: 'is typing',
 		no_messages: 'No messages',
+		no_contacts: 'You have no available contacts',
 		select_contact: 'Select contact',
 		send: 'Send'
 	},

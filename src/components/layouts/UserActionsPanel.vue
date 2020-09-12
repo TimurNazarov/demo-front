@@ -48,6 +48,8 @@
 </template>
 
 <script>
+// static
+import static_data from '@/static/static.json'
 export default {
 	name: 'UserActionsPanel',
   methods: {
@@ -60,7 +62,7 @@ export default {
       let body = {
         to: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friend/requests/send", body)
+      this.axios.post(static_data.backend_api_url + "/friend/requests/send", body)
         .then(res => {
           let request_id = res.data.data.id
           let request = {
@@ -78,7 +80,7 @@ export default {
         let body = {
           friend_id: this.user.id
         }
-        this.axios.post(this.$store.getters.api_url+"/friend/remove", body)
+        this.axios.post(static_data.backend_api_url + "/friend/remove", body)
           .then(() => {
             this.$store.dispatch('remove_friend', this.user)
             // popup message
@@ -91,7 +93,7 @@ export default {
       let body = {
         to: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friend/requests/cancel", body)
+      this.axios.post(static_data.backend_api_url + "/friend/requests/cancel", body)
         .then(res => {
           let request = {
             id: res.data,
@@ -107,7 +109,7 @@ export default {
       let body = {
         from: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friend/requests/accept", body)
+      this.axios.post(static_data.backend_api_url + "/friend/requests/accept", body)
         .then(res => {
           let new_friend = res.data.data
           this.$store.dispatch('accept_incoming_friend_request', new_friend)
@@ -120,7 +122,7 @@ export default {
       let body = {
         from: this.user.id
       }
-      this.axios.post(this.$store.getters.api_url+"/friend/requests/decline", body)
+      this.axios.post(static_data.backend_api_url + "/friend/requests/decline", body)
         .then(() => {
           this.$store.dispatch('decline_friend_request', this.user)
           // popup message

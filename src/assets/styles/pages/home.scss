@@ -1,0 +1,26 @@
+@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/mixins.scss";
+
+.home-page {
+	padding-top: 20px;
+	a {
+		text-decoration: underline;
+		font-size: $avg_text;
+		line-height: 28px;
+	}
+	.welcoming-message {
+		font-size: $avg_text;
+		line-height: 24px;
+		white-space:pre-line;
+		width: 100%;
+		max-width: 800px;
+	}
+}
+
+.home-list {
+	li {
+		&:before {
+			content: ' - '
+		}
+	}
+}

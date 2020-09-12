@@ -1,7 +1,7 @@
 <template>
 	<div :class="classes" @click="!submit_blocked ? $emit('submitted') : false">
 		<demo-loader :show="submit_blocked" :size="30"/>
-		<span v-if="!submit_blocked">{{ button_text }}</span>
+		<input v-if="!submit_blocked" type="submit" :value="button_text">
 	</div>
 </template>
 

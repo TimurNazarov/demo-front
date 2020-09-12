@@ -45,12 +45,14 @@ export default {
   // messaging
   update_active_contact(context, contact) {
     context.commit('update_active_contact', contact)
-    // unread to null
-    let data = {
-      contact_id: contact.id,
-      nullify: true
+    if(contact) {
+      // unread to null
+      let data = {
+        contact_id: contact.id,
+        nullify: true
+      }
+      context.commit('update_unread', data)
     }
-    context.commit('update_unread', data)
   },
   set_contact_messages(context, data) {
     context.commit('set_contact_messages', data)

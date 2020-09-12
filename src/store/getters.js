@@ -1,10 +1,4 @@
 export default {
-	backend_url(state) {
-		return state.backend_url
-	},
-	api_url(state) {
-		return state.backend_api_url
-	},
 	friendable_users(state) {
 		return state.friendable_users
 	},
