@@ -6,11 +6,14 @@ export default {
 	home: {
 		welcoming: {
 			welcome_text: 'Добро пожаловать в Моё Демо!\
-			Этот проект базирован на VueJS[2.6.11](frontend) и Laravel[7.0](backend). \
+			\n\nЭтот проект базирован на VueJS[2.6.11](frontend) и Laravel[7.0](backend). \
 			Он включает в себя: live-chat переписку, систему друзей, пользовательские публикации(ElasticSearch) и мультиязычность(Английский, Русский). \
 			Другие технологии, которые были использованы: SASS(scss), Laravel-Passport API аутентификация, \
 			Vue VUEX, moment.js, Websocket-общение(Laravel-Echo, Laravel-websockets(на базе Pusher\'а)). \
-			Для более детальной информации Вы можете посетить GitHub репозитории:',
+			\n\nДля тестирования Вы можете использовать заранее зарегистрированные тестовые аккаунты. Всего есть 10 тестовых пользователей \
+			у которых пары email/пароль выглядят как: 1(email)/1(пароль), 2/2, 3/3 и так далее до 10/10. \
+			\nВы также можете зарегистрировать своего пользователя на странице "Зарегистрироваться".\
+			\n\nДля более детального обзора Вы можете посетить GitHub репозитории:',
 			links: ['https://github.com/TimurNazarov/demo-front', 'https://github.com/TimurNazarov/demo-back'],
 			contacts: {
 				text: 'Мои контакты:',
@@ -21,7 +24,7 @@ export default {
 				},
 				email: {
 					text: 'Email',
-					value: 'timur.nazarou@gmail.com'
+					value: 'nazarovtim11@gmail.com'
 				}
 			}
 		}
@@ -93,7 +96,7 @@ export default {
 		home: 'Главная',
 		friends: 'Друзья',
 		friend_requests: 'Запросы в друзья',
-		register: 'Регистрация',
+		register: 'Зарегистрироваться',
 		login: 'Вход',
 		logout: 'Выход',
 		my_profile: 'Мой профиль',

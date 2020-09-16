@@ -10,6 +10,7 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/Home'),
     meta: {
+      for_visitors: true,
       ml_path: 'home'
     }
   },

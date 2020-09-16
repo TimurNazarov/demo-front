@@ -1,5 +1,5 @@
 <template>
-	<div class="home-page" v-if="user.loaded">
+	<div class="home-page">
 		<div class="container">
 			<p class="welcoming-message">{{ $ml.get('home.welcoming.welcome_text') }}</p>
 			<ul>
@@ -20,12 +20,7 @@
 
 <script>
 export default {
-	name: 'Home',
-	computed: {
-		user() {
-			return this.$store.getters.user
-		}
-	}
+	name: 'Home'
 }
 </script>
 

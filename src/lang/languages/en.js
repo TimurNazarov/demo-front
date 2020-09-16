@@ -6,11 +6,14 @@ export default {
 	home: {
 		welcoming: {
 			welcome_text: 'Welcome to My Demo!\
-			This project is based on VueJS[2.6.11](frontend) and Laravel[7.0](backend). \
+			\n\nThis project is based on VueJS[2.6.11](frontend) and Laravel[7.0](backend). \
 			It includes: live-chat messaging, friend system, user posts(ElasticSearch) and multilanguage(English, Russian). \
 			Some other technologies which were used: SASS(scss), Laravel-Passport API authentication, \
 			Vue VUEX, moment.js, Websocket-communication(Laravel-Echo, Laravel-websockets(Pusher based)). \
-			For more detailed information on this demo project you may visit GitHub repostories:',
+			\n\nFor testing you can use preregistered test accounts. There are 10 test user accounts with email/password credential pairs like: \
+			1(email)/1(password), 2/2, 3/3 and so on up to 10/10. \
+			\nYou also can register you own user on "Registration" page. \
+			\n\nFor more detailed overview on this demo project you may visit GitHub repositories:',
 			links: ['https://github.com/TimurNazarov/demo-front', 'https://github.com/TimurNazarov/demo-back'],
 			contacts: {
 				text: 'My contacts:',
@@ -21,7 +24,7 @@ export default {
 				},
 				email: {
 					text: 'Email',
-					value: 'timur.nazarou@gmail.com'
+					value: 'nazarovtim11@gmail.com'
 				}
 			}
 		}

@@ -21,7 +21,7 @@ export default {
     },
     change_lang(lang) {
       this.$ml.change(lang)
-      document.title = this.$ml.get('pages.' + localStorage.getItem('current_page'))
+      document.title = this.$ml.get('pages.' + this.$route.meta.ml_path)
     }
   }
 }
